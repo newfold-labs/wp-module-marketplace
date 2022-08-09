@@ -34,7 +34,7 @@ class MarketplaceApi {
 
 					if ( false === $marketplace ) {
 						$args = array(
-							'per_page' => 36,
+							'per_page' => 60,
 							// if marketplace brand is set on container, 
 							//  use it as brand override, 
 							//  otherwise use plugin id (default)
