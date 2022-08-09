@@ -55,6 +55,8 @@ const moduleMethods = {
     classnames,
     useState,
     useEffect,
+    useNavigate,
+    useLocation
 };
 // constants to pass to module
 const moduleConstants = {
@@ -79,3 +81,10 @@ The only other interactions is the module expects a container from the module lo
 Marketplace will load "Featured" products in the first tab, followed by the remaining categories in alphabetical order.
 
 The Products are each rendered via the MarketplaceItem component. This will pull in the Title, description, formatted_price (localized with proper currency and term detail), thumbnail image (should be 1180x660px or a matching aspect ratio at least), and CTA buttons. The primary button will load as well as an optioonal secondary button. If a CTB id exists (and the component level constant supportCTB allows it) the primary button will tranform into a CTB button which will open the click to buy modal.
+
+
+## Changelog
+
+### Version 1.3
+
+Adds the deep linking provided the plugin is using react-router-dom v6 and passes in the `useNavigate` and `useLocation` methods.
