@@ -13,26 +13,17 @@ import { default as MarketplaceList } from '../marketplaceList/';
 	const [ marketplaceCategories, setMarketplaceCategories ] = methods.useState( [] );
 	const [ marketplaceItems, setMarketplaceItems ] = methods.useState( [] );
 	const [ initialTab, setInitialTab ] = methods.useState();
+	const navigate = methods.useNavigate();
+	const location = methods.useLocation();
 
-	// const location = methods.useLocation();
-	// const navigate = methods.useNavigate();
+	/**
+	 * Update url when navigating between tabs
+	 * @param string tab name 
+	 */
+	const onTabNavigate = ( tabName ) => {
+		navigate( '/marketplace/' + tabName, { replace: true } );
+	};
 
-	// const onTabNavigate = ( tabName ) => {
-		// methods.navigate( '/marketplace/' + tabName, { replace: true } );
-		// console.log( tabName );
-	// };
-
-	// useEffect( () => {
-	// 	if ( location.pathname.includes( '/services' ) ) {
-	// 		setInitialTab( 'services' );
-	// 	} else if ( location.pathname.includes( '/themes' ) ) {
-	// 		setInitialTab( 'themes' );
-	// 	} else if ( ! location.pathname.includes( '/plugins' ) ) {
-	// 		methods.navigate( '/marketplace/plugins', { replace: true } );
-	// 	}
-	// 	setIsLoading( false );
-	// }, [ location ] );
-	
 	/**
 	 * on mount load all marketplace data from module api
 	 */
@@ -40,7 +31,7 @@ import { default as MarketplaceList } from '../marketplaceList/';
 		methods.apiFetch( {
 			url: `${constants.resturl}/newfold-marketplace/v1/marketplace`
 		}).then( ( response ) => {
-			setIsLoading( false );
+			
 			// check response for data
 			if ( ! response.hasOwnProperty('data') ) {
 				setIsError( true );
@@ -69,6 +60,31 @@ import { default as MarketplaceList } from '../marketplaceList/';
 	}, [ marketplaceItems ] );
 
 	/**
+	 * When marketplaceCategories changes
+	 * verify that the tab is a category
+	 */
+	 methods.useEffect(() => {
+		// only before rendered, but after categories are populated
+		if ( isLoading && marketplaceCategories.length > 1 ) {
+			// read initial tab from path
+			if ( location.pathname.includes( 'marketplace/' ) ) {
+				const urlpath = location.pathname.substring( 
+					location.pathname.lastIndexOf( '/' ) + 1
+				);
+				// make sure a category exists for that path
+				if ( urlpath && marketplaceCategories.filter(cat => cat.name === urlpath ).length == 0 ) {
+					// if not found, set to featured category
+					setInitialTab( 'featured' );
+				} else {
+					// if found, set that to the initial tab
+					setInitialTab( urlpath );
+				}
+			}
+			setIsLoading( false );
+		}
+	}, [ marketplaceCategories ] );
+
+	/**
 	 * map all categories into an array for consuming by tabpanel component
 	 * @param Array products 
 	 * @returns 
@@ -88,7 +104,7 @@ import { default as MarketplaceList } from '../marketplaceList/';
 		});
 		cats.forEach((cat)=>{
 			thecategories.push( {
-				name: cat,
+				name: cat.toLowerCase().replaceAll(' ', '-'),
 				title: cat,
 				currentCount: constants.perPage
 			});
@@ -96,11 +112,11 @@ import { default as MarketplaceList } from '../marketplaceList/';
 		thecategories.sort(
 			function( a, b ) {
 				// stick featured to top
-				if ( a.name.toLowerCase() === 'featured' ) { return -1; }
-				if ( b.name.toLowerCase() === 'featured' ) { return 1; }
+				if ( a.name === 'featured' ) { return -1; }
+				if ( b.name === 'featured' ) { return 1; }
 				// sort the rest alphabetically
-				if ( a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
-				if ( a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
+				if ( a.name < b.name) { return -1; }
+				if ( a.name > b.name) { return 1; }
 				return 0;
 			}
 		);
@@ -137,12 +153,12 @@ import { default as MarketplaceList } from '../marketplaceList/';
 					activeClass="current-tab"
 					orientation="vertical"
 					initialTabName={ initialTab }
-					// onSelect={ onTabNavigate }
+					onSelect={ onTabNavigate }
 					tabs={ marketplaceCategories }
 				>
 					{ ( tab ) => <MarketplaceList
 						marketplaceItems={marketplaceItems}
-						category={tab.name}
+						category={tab.title}
 						Components={Components}
 						methods={methods}
 						constants={constants}

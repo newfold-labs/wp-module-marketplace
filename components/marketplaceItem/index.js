@@ -171,7 +171,7 @@
 				</Components.CardMedia>
 			) }
 			<Components.CardHeader>
-				<h3>{ item.name }</h3>
+				<h2>{ item.name }</h2>
 				{ item.price > 0 && item.price_formatted && <div className="price">{ item.price_formatted }</div> }
 			</Components.CardHeader>
 			{ item.description && 
