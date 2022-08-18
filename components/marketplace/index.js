@@ -7,7 +7,7 @@ import { default as MarketplaceList } from '../marketplaceList/';
  * @param {*} props 
  * @returns 
  */
- const Marketplace = ({methods, constants, Components, ...props}) => {
+ const Marketplace = ({methods, constants, Components, skeleton, ...props}) => {
 	const [ isLoading, setIsLoading ] = methods.useState( true );
 	const [ isError, setIsError ] = methods.useState( false );
 	const [ marketplaceCategories, setMarketplaceCategories ] = methods.useState( [] );
@@ -139,10 +139,34 @@ import { default as MarketplaceList } from '../marketplaceList/';
 		setMarketplaceCategories( updatedMarketplaceCategories );
 	};
 
+	/**
+	 * render marketplace preloader
+	 * 
+	 * @returns React Component
+	 */
+	 const renderSkeleton = () => {
+		if ( typeof skeleton !== "undefined" ) {
+			if ( skeleton.hasOwnProperty('show') && skeleton.show ) {
+
+				// render skeleton component
+				return <MarketPlaceIsLoading 
+						filter={ skeleton.hasFilter } 
+						items={ skeleton.items } 
+						containerClassNames={ skeleton.containerClassNames }
+					/>;
+
+			}
+		}
+		
+		// render spinner (WP component)
+		return <Components.Spinner />;
+	}
+
+
 	return (
 		<div className={methods.classnames('newfold-marketplace-wrapper')}>
 			{ isLoading && 
-				<Components.Spinner />
+				renderSkeleton()
 			}
 			{ isError && 
 				<h3>Oops, there was an error loading the marketplace, please try again later.</h3>
