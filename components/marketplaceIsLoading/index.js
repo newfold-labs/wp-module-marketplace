@@ -9,10 +9,10 @@ import './marketplaceIsloading.scss';
  * @param {*} props 
  * @returns 
  */
-const MarketPlaceIsLoading = ({ items, filter, containerClassNames }) => {
+const MarketplaceIsLoading = ({ items = 6, filter = true, containerClassNames = "grid col2" }) => {
 
     const renderMarketplaceSkeletonItems = (items) => {
-        const itemsCount = items || 6;
+        const itemsCount = items;
         let marketplaceItems = [];
 
         for (let i = 0; i < itemsCount; i++) {
@@ -26,7 +26,7 @@ const MarketPlaceIsLoading = ({ items, filter, containerClassNames }) => {
         <div className="newfold-marketplace-isloading">
             { filter && <MarketplaceFilterBarSkeleton /> }
 
-            <div className={ containerClassNames ? containerClassNames : "grid col2" }>
+            <div className={ containerClassNames }>
                 { renderMarketplaceSkeletonItems(items) }
             </div>
             
@@ -34,4 +34,4 @@ const MarketPlaceIsLoading = ({ items, filter, containerClassNames }) => {
      );
 }
  
-export default MarketPlaceIsLoading;
+export default MarketplaceIsLoading;

@@ -1,4 +1,5 @@
 import { default as MarketplaceList } from '../marketplaceList/';
+import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
 
 /**
  * Marketplace Module
@@ -7,7 +8,7 @@ import { default as MarketplaceList } from '../marketplaceList/';
  * @param {*} props 
  * @returns 
  */
- const Marketplace = ({methods, constants, Components, skeleton, ...props}) => {
+ const Marketplace = ({methods, constants, Components, ...props}) => {
 	const [ isLoading, setIsLoading ] = methods.useState( true );
 	const [ isError, setIsError ] = methods.useState( false );
 	const [ marketplaceCategories, setMarketplaceCategories ] = methods.useState( [] );
@@ -145,21 +146,8 @@ import { default as MarketplaceList } from '../marketplaceList/';
 	 * @returns React Component
 	 */
 	 const renderSkeleton = () => {
-		if ( typeof skeleton !== "undefined" ) {
-			if ( skeleton.hasOwnProperty('show') && skeleton.show ) {
-
-				// render skeleton component
-				return <MarketPlaceIsLoading 
-						filter={ skeleton.hasFilter } 
-						items={ skeleton.items } 
-						containerClassNames={ skeleton.containerClassNames }
-					/>;
-
-			}
-		}
-		
-		// render spinner (WP component)
-		return <Components.Spinner />;
+		// render default skeleton
+		return <MarketplaceIsLoading />;
 	}
 
 
