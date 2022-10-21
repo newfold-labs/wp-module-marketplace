@@ -81,12 +81,16 @@ class MarketplaceApi {
 			$products = self::product_data( $args );
 			$categories = self::category_data( $args );
 
-			$marketplace['categories'] = $categories;
-			$marketplace['products'] = $products;
-
-			$expiration = self::get_expiration( $products );
-			self::setTransient( json_encode($marketplace), $expiration );
-			
+			if ( $products && $categories ) {
+				$marketplace = json_encode(
+					array(
+						'categories' => $categories,
+						'products'   => $products
+				 	)
+				);
+				$expiration = self::get_expiration( $products );
+				self::setTransient( $marketplace, $expiration );
+			}
 		}
 		return $marketplace;
 	}
