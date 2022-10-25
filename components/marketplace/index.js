@@ -32,13 +32,12 @@ import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
 		methods.apiFetch( {
 			url: `${constants.resturl}/newfold-marketplace/v1/marketplace`
 		}).then( ( response ) => {
-			let json = JSON.parse(response);
 			// check response for data
-			if ( ! json.hasOwnProperty('categories') || ! json.hasOwnProperty('products') ) {
+			if ( ! response.hasOwnProperty('categories') || ! response.hasOwnProperty('products') ) {
 				setIsError( true );
 			} else {
-				setMarketplaceItems( json.products.data );
-				setMarketplaceCategories( validateCategories(json.categories.data) );
+				setMarketplaceItems( response.products.data );
+				setMarketplaceCategories( validateCategories(response.categories.data) );
 			}
 		});
 	}, [] );

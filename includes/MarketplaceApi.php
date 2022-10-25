@@ -92,7 +92,7 @@ class MarketplaceApi {
 				self::setTransient( $marketplace, $expiration );
 			}
 		}
-		return $marketplace;
+		return rest_ensure_response( json_decode( $marketplace ) );
 	}
 
 	/**
