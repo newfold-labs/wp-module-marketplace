@@ -88,3 +88,7 @@ The Products are each rendered via the MarketplaceItem component. This will pull
 ### Version 1.3
 
 Adds the deep linking provided the plugin is using react-router-dom v6 and passes in the `useNavigate` and `useLocation` methods.
+
+### Version 1.4
+
+Adds category endpoint and category priority sorting to the marketplace data stored in the transient.
