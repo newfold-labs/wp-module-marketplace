@@ -20,7 +20,7 @@ const MarketplaceIsLoading = ({ items = 6, filter = true, containerClassNames = 
             marketplaceItems.push(i);
         }
 
-        return marketplaceItems.map( () => <MarketplaceItemSkeleton /> );
+        return marketplaceItems.map( (item) => <MarketplaceItemSkeleton key={item}/> );
     }
 
     return ( 
