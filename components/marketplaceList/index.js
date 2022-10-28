@@ -21,7 +21,7 @@ const MarketplaceList = ({ marketplaceItems, currentCount, category, Components,
 	 */
 	const filterProductsByCategory = (items, category) => {
 		return items.filter((item) => {
-			return item.categories.includes( category );
+			return item.categories.includes( category.title );
 		});
 	};
 
@@ -65,11 +65,11 @@ const MarketplaceList = ({ marketplaceItems, currentCount, category, Components,
 	 * this is so users don't need to load more every time they click back into a category
 	 */
 	methods.useEffect(() => {
-		saveCategoryDisplayCount( category, itemsCount );
+		saveCategoryDisplayCount( category.name, itemsCount );
 	}, [ itemsCount ] );
 
 	return (
-		<div className="marketplaceList">
+		<div className={ `marketplace-list marketplace-list-${ category.name }` }>
 			<div className="grid col2">
 				{ activeItems.length > 0 && activeItems.map((item) => (
 						<MarketplaceItem
