@@ -80,6 +80,7 @@ import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
 				}
 			}
 			setIsLoading( false );
+			applyStyles();
 		}
 	}, [ marketplaceCategories ] );
 
@@ -121,6 +122,25 @@ import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
 			}
 		});
 		setMarketplaceCategories( updatedMarketplaceCategories );
+	};
+
+	/**
+	 * Apply styles if they exist
+	 */
+	 const applyStyles = () => {
+		if ( marketplaceCategories ) {
+			marketplaceCategories.forEach( (category) => {
+				if( 
+					category.styles && // category has styles
+					!document.querySelector('[data-styleid="' + category.className + '"]') // not already added
+				) {
+					const style = document.createElement("style")
+					style.textContent = category.styles;
+					style.dataset.styleid = category.className;
+					document.head.appendChild(style);
+				}
+			});
+		}
 	};
 
 	/**
