@@ -157,6 +157,33 @@
 		);
 	};
 
+	const renderPrice = (item) => {
+		let pricewrap, price, fullprice;
+		if ( item.price > 0 && item.price_formatted ) {
+			price =  (
+				<div className="price">{ item.price_formatted }</div>
+			);
+			if ( item.full_price > 0 && item.full_price_formatted ) {
+				fullprice =  (
+					<s className="price full-price">{ item.full_price_formatted }</s>
+				);	
+				pricewrap = (
+					<div className="price-wrap has-full-price">
+						{ fullprice }
+						{ price }
+					</div>
+				);
+			} else {
+				pricewrap = (
+					<div className="price-wrap">
+						{ price }
+					</div>
+				);
+			}
+		}
+		return pricewrap;
+	};
+
 	return (
 		<Components.Card className={ `marketplace-item marketplace-item-${ item.id }` } id={`marketplace-item-${ item.id }`}>
 			{ item.productThumbnailUrl && (
@@ -166,7 +193,7 @@
 			) }
 			<Components.CardHeader>
 				<h2>{ item.name }</h2>
-				{ item.price > 0 && item.price_formatted && <div className="price">{ item.price_formatted }</div> }
+				{ renderPrice(item) }
 			</Components.CardHeader>
 			{ item.description && 
 				<Components.CardBody 
