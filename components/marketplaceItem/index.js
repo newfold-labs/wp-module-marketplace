@@ -185,7 +185,7 @@
 	};
 
 	return (
-		<Components.Card className={ `marketplace-item marketplace-item-${ item.id }` } id={`marketplace-item-${ item.id }`}>
+		<Components.Card className={ `marketplace-item marketplace-item-${ item.id } ${ item.full_price ? "product-has-full-price" : ""}` } id={`marketplace-item-${ item.id }`}>
 			{ item.productThumbnailUrl && (
 				<Components.CardMedia>
 					<img src={ item.productThumbnailUrl } alt={ item.name + ' thumbnail' } />
