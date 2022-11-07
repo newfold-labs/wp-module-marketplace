@@ -24,6 +24,7 @@ class Marketplace {
 
 		// Module functionality goes here
 		add_action( 'rest_api_init', array( MarketplaceApi::class, 'registerRoutes' ) );
+		add_action( 'wp_loaded', array( Themes::class, 'init' ) );
 	}
 
 }
