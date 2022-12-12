@@ -113,7 +113,7 @@ class MarketplaceApi {
 				'headers' => array(
 					'Content-Type'  => 'application/json',
 					'Accept'        => 'application/json',
-					// 'Authorization' => 'Bearer ' . HiiveConnection::get_auth_token(), // not needed since it's a publicly accessible endpoint
+					// 'Authorization' => 'Bearer ' . HiiveConnection::get_auth_token(), // not needed since it's now a publicly accessible endpoint
 				),
 			)
 		);
@@ -122,10 +122,16 @@ class MarketplaceApi {
 		if ( ! is_wp_error( $response ) ) {
 			$body = wp_remote_retrieve_body( $response );
 			$data = json_decode( $body, true );
-			if ( $data && is_array( $data ) ) {
+			if (
+				$data &&
+				is_array( $data ) &&
+				array_key_exists( 'data', $data )
+			) {
 				return $data;
 			}
 		}
+
+		return false;
 	}
 
 	/**
@@ -146,7 +152,7 @@ class MarketplaceApi {
 				'headers' => array(
 					'Content-Type'  => 'application/json',
 					'Accept'        => 'application/json',
-					// 'Authorization' => 'Bearer ' . HiiveConnection::get_auth_token(), // not needed since it's a publicly accessible endpoint
+					// 'Authorization' => 'Bearer ' . HiiveConnection::get_auth_token(), // not needed since it's now a publicly accessible endpoint
 				),
 			)
 		);
@@ -155,9 +161,15 @@ class MarketplaceApi {
 		if ( ! is_wp_error( $response ) ) {
 			$body = wp_remote_retrieve_body( $response );
 			$data = json_decode( $body, true );
-			if ( $data && is_array( $data ) ) {
+			if (
+				$data &&
+				is_array( $data ) &&
+				array_key_exists( 'data', $data )
+			) {
 				return $data;
 			}
 		}
+
+		return false;
 	}
 }
