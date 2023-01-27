@@ -3,6 +3,12 @@
     padding: 20px 20px 40px;
 }
 
+@media screen and (min-width: 1600px) {
+    .nfd-plugin-card-content {
+        padding-bottom: 20px;
+    }
+}
+
 .nfd-plugin-card-thumbnail {
     position: absolute;
     top: 20px;
