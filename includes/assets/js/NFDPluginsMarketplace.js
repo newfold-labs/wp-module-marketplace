@@ -9,7 +9,7 @@ class NFDPluginsMarketplace {
         })
 
         // Fetch data from the Marketplace API
-        fetch(window.nfdRestRoot + '/newfold-marketplace/v1/marketplace', {
+        fetch(nfdPremiumPluginsMarketplace.restApiRoot + '/newfold-marketplace/v1/marketplace', {
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',

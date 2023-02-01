@@ -106,6 +106,7 @@ class PluginsMarketplace {
 			'nfd_plugins_marketplace_js',
 			'nfdPremiumPluginsMarketplace',
 			array(
+				'restApiRoot'			 => \get_home_url() . '/index.php?rest_route=',			
 				'restApiNonce'           => wp_create_nonce( 'wp_rest' ),
 				'marketplaceDescription' => __( 'Unlock the full potential of your WordPress website with premium plugins from', 'newfold-marketplace-module' ) . ' ' . ucwords( container()->plugin()->id ),
 			)
