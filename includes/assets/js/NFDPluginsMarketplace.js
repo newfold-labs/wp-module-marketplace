@@ -6,24 +6,24 @@ class NFDPluginsMarketplace {
         // Add event listener for when the DOM is loaded
         window.addEventListener('DOMContentLoaded', () => {
             this.setupContainer();
-        })
 
-        // Fetch data from the Marketplace API
-        fetch(nfdPremiumPluginsMarketplace.restApiRoot + '/newfold-marketplace/v1/marketplace', {
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-WP-Nonce': nfdPremiumPluginsMarketplace.restApiNonce
-            }
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (! data.hasOwnProperty('products')) {
-				this.isError();
-			} else {
-                this.isLoaded();
-                this.showProducts(this.filterProducts(data.products.data));
-            }
+            // Fetch data from the Marketplace API
+            fetch(nfdPremiumPluginsMarketplace.restApiRoot + '/newfold-marketplace/v1/marketplace', {
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': nfdPremiumPluginsMarketplace.restApiNonce
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (! data.hasOwnProperty('products')) {
+                    this.isError();
+                } else {
+                    this.isLoaded();
+                    this.showProducts(this.filterProducts(data.products.data));
+                }
+            })
         })
     }
 
