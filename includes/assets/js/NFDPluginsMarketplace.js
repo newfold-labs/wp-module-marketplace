@@ -61,14 +61,14 @@ class NFDPluginsMarketplace {
 
         // Helper function to render the action buttons for each product
         const renderActions = (product) => {
-            const supportsCTB = window.supportsCTB;
+            const supportsCTB = window.nfdConnected;
             let actionButtons = [];
 
             if (product.primaryUrl && product.price) {
                 const primaryAction = `<a target="_blank" 
                 href="${product.primaryUrl}" 
                 class="button button-primary nfd-ctb-btn"
-                ${supportsCTB && product.clickToBuyId ? 'data-action="load-nfd-ctb"' + 'data-ctb-id="' + product.clickToBuyId + '"' : ''}>Buy $${product.price}</a>`;
+                ${supportsCTB && product.clickToBuyId ? 'data-action="load-nfd-ctb" data-ctb-id="' + product.clickToBuyId + '"' : ''}>Buy $${product.price}</a>`;
 
                 actionButtons.push(primaryAction);
             }
