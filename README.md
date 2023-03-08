@@ -35,6 +35,7 @@ The module also contains some javascript components that are used together withi
 1. Marketplace - the main component, this one gets loaded into the plugin app with some props and loads the rest.
 2. MarketplaceList - this loads the contents of the TabPanel, basically a collection of marketplace items.
 3. MarketplaceItem - This is used to render each item in the list.
+4. MarketplaceLite - this is a simpler main component, it displays a single category/vendor of products and removes tab navigation.
 
 The main Marketplace component expects 3 props with others nested within. This is so the module can be very light and not have complex dependencies. The plugin app, will have these components and methods in place and must pass them to the component as follows:
 ```javascript
@@ -82,13 +83,14 @@ Marketplace will load "Featured" products in the first tab, followed by the rema
 
 The Products are each rendered via the MarketplaceItem component. This will pull in the Title, description, formatted_price (localized with proper currency and term detail), thumbnail image (should be 1180x660px or a matching aspect ratio at least), and CTA buttons. The primary button will load as well as an optioonal secondary button. If a CTB id exists (and the component level constant supportCTB allows it) the primary button will tranform into a CTB button which will open the click to buy modal.
 
+### Premium Plugins
+This module adds plugin marketplace products to a "Premium Plugins" tab and subnavigation link in the WordPress plugin section. To disable this feature use the `nfd_enable_plugins_marketplace` filter and return `false` in the plugin like so:
+```
+add_filter( 'nfd_enable_plugins_marketplace', '__return_false' );
+```
 
 ## Changelog
 
-### Version 1.3
+See the releases for the changelog and version details. 
 
-Adds the deep linking provided the plugin is using react-router-dom v6 and passes in the `useNavigate` and `useLocation` methods.
-
-### Version 1.4
-
-Adds category endpoint and category priority sorting to the marketplace data stored in the transient.
+https://github.com/newfold-labs/wp-module-marketplace/releases

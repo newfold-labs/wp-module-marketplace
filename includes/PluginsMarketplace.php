@@ -14,7 +14,7 @@ class PluginsMarketplace {
 	 * Initialize.
 	 */
 	public static function init() {
-		// Filters wheather the premuim plugins tab is enabled or disabled. Default is enabled.
+		// Filters whether the premuim plugins tab is enabled or disabled. Default is enabled.
 		$enabled = apply_filters( 'nfd_enable_plugins_marketplace', true );
 
 		if ( $enabled ) {
