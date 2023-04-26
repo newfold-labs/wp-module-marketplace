@@ -46,6 +46,15 @@ class NFDPluginsMarketplace {
         return plugins;
     }
 
+     // Returns whether the environment supports CTB
+    supportsCTB() {
+        if (typeof nfdctb === 'undefined') {
+            return false;
+        }
+
+        return nfdctb.supportsCTB;
+    }
+
     // Show the filtered products on the page
     showProducts(products) {
         
@@ -61,7 +70,7 @@ class NFDPluginsMarketplace {
 
         // Helper function to render the action buttons for each product
         const renderActions = (product) => {
-            const supportsCTB = window.nfdConnected;
+            const supportsCTB = this.supportsCTB();
             let actionButtons = [];
 
             if (product.primaryUrl && product.price) {
