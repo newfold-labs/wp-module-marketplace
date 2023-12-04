@@ -1,6 +1,6 @@
+import { Container, Title } from "@newfold/ui-component-library";
 import { default as MarketplaceList } from '../marketplaceList/';
 import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
-import { Title } from "@newfold/ui-component-library";
 
 const defaults = {
 	'eventendpoint': '/newfold-data/v1/events/',
@@ -23,7 +23,7 @@ const defaults = {
  * @param {*} props 
  * @returns 
  */
- const Marketplace = ({methods, constants, Components, ...props}) => {
+ const Marketplace = ({methods, constants, ...props}) => {
 	const [ isLoading, setIsLoading ] = methods.useState( true );
 	const [ isError, setIsError ] = methods.useState( false );
 	const [ marketplaceCategories, setMarketplaceCategories ] = methods.useState( [] );
@@ -178,11 +178,11 @@ const defaults = {
 
 	return (
 		<>
-			<Components.SectionHeader
+			<Container.Header
 				title={getSectionTitle()}
-				subTitle={constants.text.subTitle}
+				description={constants.text.subTitle}
 			/>
-			<Components.SectionContent className={methods.classnames(
+			<Container.Block className={methods.classnames(
 				'newfold-marketplace-wrapper',
 				`newfold-marketplace-${marketplaceCategories[activeCategoryIndex]}`
 				)}>
@@ -202,9 +202,8 @@ const defaults = {
 							methods={methods}
 							constants={constants}
 						/>
-
 				}
-			</Components.SectionContent>
+			</Container.Block>
 		</>
 	)
 
