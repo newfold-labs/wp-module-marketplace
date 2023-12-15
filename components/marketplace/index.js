@@ -35,6 +35,11 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 
 	// set defaults if not provided
 	constants = Object.assign( defaults, constants );
+
+	// Test overriding the subtitle for an example of the brand-plugin-test
+	constants.text.subTitle =
+		'This is a test of the emergency broadcasting system. This is only a test.';
+
 	/**
 	 * on mount load all marketplace data from module api
 	 */
@@ -205,6 +210,7 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 			<Container.Header
 				title={ getSectionTitle() }
 				description={ constants.text.subTitle }
+				className="newfold-marketplace-header"
 			/>
 			<Container.Block
 				className={ methods.classnames(
