@@ -5,22 +5,22 @@ describe( 'Marketplace Page', function () {
 	const appClass = '.' + Cypress.env( 'appId' );
 
 	before( () => {
-
+		cy.visit( '/wp-admin/index.php' );
 		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
-
 		cy.intercept(
 			{
 				method: 'GET',
 				url: /newfold-marketplace(\/|%2F)v1(\/|%2F)marketplace/,
 			},
 			marketplaceProductsFixture
-		).as( 'marketplace_products' );
+		).as( 'marketplaceProducts' );
 
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
 				Cypress.env( 'pluginId' ) +
 				'#/marketplace'
 		);
+		cy.wait( '@marketplaceProducts' );
 	} );
 
 	it( 'Exists', () => {

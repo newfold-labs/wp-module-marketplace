@@ -3,6 +3,7 @@ const marketplaceProductsFixture = require( '../fixtures/marketplace-products.js
 
 describe( 'Plugins Premium Tab', () => {
 	before( () => {
+		cy.visit( '/wp-admin/index.php' );
 		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
 
 		cy.intercept(
@@ -12,10 +13,11 @@ describe( 'Plugins Premium Tab', () => {
 			},
 			{
 				body: marketplaceProductsFixture,
-				delay: 1000,
+				delay: 750,
 			}
-		);
+		).as( 'marketplaceProducts' );
 		cy.visit( '/wp-admin/plugin-install.php?tab=premium-marketplace' );
+		cy.wait( '@marketplaceProducts' );
 	} );
 
 	it( 'Premium tab exist', () => {
