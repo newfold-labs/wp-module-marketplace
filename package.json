@@ -12,6 +12,6 @@
   ],
   "dependencies": {
     "@heroicons/react": "^2.1.1",
-    "@newfold/ui-component-library": "^1.0.1"
+    "@newfold/ui-component-library": "^1.1.0"
   }
 }
