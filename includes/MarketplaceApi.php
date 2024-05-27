@@ -32,6 +32,18 @@ class MarketplaceApi {
 			)
 		);
 
+		register_rest_route(
+			'newfold-marketplace/v1',
+			'/products/page',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => __CLASS__ . '::product_page_callback',
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+			)
+		);
+
 	}
 
 	/**
@@ -175,5 +187,41 @@ class MarketplaceApi {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get product page data
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 *
+	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
+	 */
+	public static function product_page_callback( \WP_REST_Request $request ) {
+		$page = $request->get_param( 'id' );
+		$product_pages_ednpoint = NFD_HIIVE_URL . '/marketplace/v1/products/pages/' . $page;
+		$data = array();
+
+		$response = wp_remote_get(
+			$product_pages_ednpoint,
+			array(
+				'headers' => array(
+					'Content-Type' => 'application/json',
+					'Accept'       => 'application/json',
+				),
+			)
+		);
+
+		if ( 
+			! is_wp_error( $response ) 
+			&& 200 === wp_remote_retrieve_response_code( $response )
+		)
+		{
+			$body = wp_remote_retrieve_body( $response );
+			if ( $body ) {
+				$data[ 'html' ] = $body;
+			}
+		}
+
+		return rest_ensure_response( $data );
 	}
 }
