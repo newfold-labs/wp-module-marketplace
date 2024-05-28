@@ -7,11 +7,14 @@ import './stylesheet.scss';
  * @param {*} props
  * @return {JSX.Element} MarketplaceSkeleton
  */
-const MarketplaceSkeleton = ( { width, height, customClass } ) => {
+const MarketplaceSkeleton = ( { width, height, className = '' } ) => {
 	return (
 		<div
 			// eslint-disable-next-line prettier/prettier
-			className={ 'newfold-marketplace-skeleton ' + ( customClass ) }
+			className={ classNames(
+				'newfold-marketplace-skeleton',
+				className
+			) }
 			style={ {
 				width: width || '100%',
 				height: height || 'auto',

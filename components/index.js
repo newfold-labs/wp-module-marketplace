@@ -1,6 +1,5 @@
 import Marketplace from './marketplace';
 import ProductPage from './productPage';
-export { default as MarketplaceSkeleton } from './marketplaceSkeleton';
 
 const NewfoldMarketplace = ( { methods, constants, ...props } ) => {
 	const match = methods.useMatch( 'marketplace/product/:id' );

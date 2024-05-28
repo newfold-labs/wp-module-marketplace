@@ -12,17 +12,17 @@ const MarketplaceItemSkeleton = () => {
         <div className="marketplace-item-skeleton">
             
             <div className="skeleton-item-media">
-                <MarketplaceSkeleton width="100%" height="auto" customClass="marketplace-item-img-skeleton" />
+                <MarketplaceSkeleton width="100%" height="auto" className="marketplace-item-img-skeleton" />
             </div>
 
             <div className="skeleton-item-body">
-                <MarketplaceSkeleton width="170px" height="20px" customClass="marketplace-item-title-skeleton"/>
+                <MarketplaceSkeleton width="170px" height="20px" className="marketplace-item-title-skeleton"/>
 
-                <MarketplaceSkeleton width="100%" height="10px" customClass="marketplace-item-desc-skeleton"/>
-                <MarketplaceSkeleton width="100%" height="10px" customClass="marketplace-item-desc-skeleton"/>
-                <MarketplaceSkeleton width="70%" height="10px" customClass="marketplace-item-desc-skeleton"/>
+                <MarketplaceSkeleton width="100%" height="10px" className="marketplace-item-desc-skeleton"/>
+                <MarketplaceSkeleton width="100%" height="10px" className="marketplace-item-desc-skeleton"/>
+                <MarketplaceSkeleton width="70%" height="10px" className="marketplace-item-desc-skeleton"/>
 
-                <MarketplaceSkeleton width="80px" height="36px" customClass="marketplace-item-button-skeleton"/>
+                <MarketplaceSkeleton width="80px" height="36px" className="marketplace-item-button-skeleton"/>
             </div>
 
         </div>

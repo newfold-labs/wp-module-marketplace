@@ -9,7 +9,7 @@ import MarketplaceSkeleton from "../marketplaceSkeleton";
  */
 const MarketplaceFilterBarSkeleton = ({ width, height }) => {
     return ( 
-        <MarketplaceSkeleton width={ width || "500px" } height={ height || "45px" } customClass="filterbar-skeleton"/>
+        <MarketplaceSkeleton width={ width || "500px" } height={ height || "45px" } className="filterbar-skeleton"/>
      );
 }
  
