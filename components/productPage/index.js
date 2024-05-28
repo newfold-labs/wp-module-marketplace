@@ -1,3 +1,4 @@
+import ProductPageError from './ProductPageError';
 import ProductPageLoading from './ProductPageLoading';
 
 const initialState = {
@@ -6,7 +7,7 @@ const initialState = {
 	error: false,
 };
 
-const ProductPage = ( { productPageId, methods } ) => {
+const ProductPage = ( { productPageId, methods, constants } ) => {
 	const [ data, setData ] = methods.useState( {
 		...initialState,
 	} );
@@ -26,25 +27,39 @@ const ProductPage = ( { productPageId, methods } ) => {
 			} )
 			.then( ( response ) => {
 				if ( response.hasOwnProperty( 'html' ) ) {
+					// Set the html content
 					setData( {
 						html: response.html,
 						loading: false,
 						error: false,
 					} );
 				} else {
+					// Invoke error state
 					setData( {
 						html: null,
 						loading: false,
 						error: true,
 					} );
 				}
+			} )
+			.catch( () => {
+				// Invoke error state
+				setData( {
+					html: null,
+					loading: false,
+					error: true,
+				} );
 			} );
 	}, [ productPageId ] );
 
 	return (
 		<div>
 			{ data.loading && <ProductPageLoading /> }
-			{ data.error && <p>Error loading product</p> }
+			{ data.error && (
+				<ProductPageError
+					text={ constants.text?.productPage?.error ?? {} }
+				/>
+			) }
 			{ data.html && (
 				<div
 					dangerouslySetInnerHTML={ {
