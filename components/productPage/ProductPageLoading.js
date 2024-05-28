@@ -113,7 +113,11 @@ const ProductPageLoading = () => {
 	);
 
 	return (
-		<div>
+		<div
+			aria-busy="true"
+			aria-live="polite"
+			aria-label="Fetching product details"
+		>
 			<Hero />
 			<Features />
 			<Pricing />

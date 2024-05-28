@@ -3,8 +3,11 @@ import errorVector from '../../includes/assets/img/dog-walking.svg';
 
 const ProductPageError = ( { text = {} } ) => {
 	return (
-		<div>
-			<div className="nfd-flex nfd-flex-col nfd-items-center nfd-justify-center nfd-gap-6 nfd-p-8 nfd-min-h-[calc(100dvh-220px)]">
+		<div aria-live="assertive">
+			<div
+				role="alert"
+				className="nfd-flex nfd-flex-col nfd-items-center nfd-justify-center nfd-gap-6 nfd-p-8 nfd-min-h-[calc(100dvh-220px)]"
+			>
 				<img
 					src={ errorVector }
 					role="presentation"
