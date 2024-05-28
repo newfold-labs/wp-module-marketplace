@@ -1,3 +1,5 @@
+import ProductPageLoading from './ProductPageLoading';
+
 const initialState = {
 	html: null,
 	loading: true,
@@ -41,7 +43,7 @@ const ProductPage = ( { productPageId, methods } ) => {
 
 	return (
 		<div>
-			{ data.loading && <p>Loading...</p> }
+			{ data.loading && <ProductPageLoading /> }
 			{ data.error && <p>Error loading product</p> }
 			{ data.html && (
 				<div
