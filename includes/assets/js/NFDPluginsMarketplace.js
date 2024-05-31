@@ -102,7 +102,7 @@ class NFDPluginsMarketplace {
         actionButtons.push(primaryAction);
       }
 
-      if (product.secondaryUrl) {
+      if (product.secondaryUrl && this.isValidUrl(product.secondaryUrl)) {
         const secondaryAction = `<a target="_blank" href="${product.secondaryUrl}">More Details</a>`;
 
         actionButtons.push(secondaryAction);
@@ -229,6 +229,16 @@ class NFDPluginsMarketplace {
         location.reload();
       }
     });
+  }
+
+  // Check if a string is a valid URL
+  isValidUrl(value) {
+    try {
+        new URL(value);
+        return true;
+    } catch (e) {
+        return false;
+    }
   }
 }
 
