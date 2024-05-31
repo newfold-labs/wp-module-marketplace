@@ -6,7 +6,7 @@ describe( 'Marketplace Page', function () {
 
 	before( () => {
 
-		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace', { failOnNonZeroExit: false } );
+		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
 
 		cy.intercept(
 			{
