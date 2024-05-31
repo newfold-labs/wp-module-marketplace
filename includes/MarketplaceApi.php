@@ -197,9 +197,9 @@ class MarketplaceApi {
 	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
 	 */
 	public static function product_page_callback( \WP_REST_Request $request ) {
-		$page = $request->get_param( 'id' );
+		$page                   = $request->get_param( 'id' );
 		$product_pages_ednpoint = NFD_HIIVE_URL . '/marketplace/v1/products/pages/' . $page;
-		$data = array();
+		$data                   = array();
 
 		$response = wp_remote_get(
 			$product_pages_ednpoint,
@@ -211,14 +211,13 @@ class MarketplaceApi {
 			)
 		);
 
-		if ( 
+		if (
 			! is_wp_error( $response ) 
 			&& 200 === wp_remote_retrieve_response_code( $response )
-		)
-		{
+		) {
 			$body = wp_remote_retrieve_body( $response );
 			if ( $body ) {
-				$data[ 'html' ] = $body;
+				$data['html'] = $body;
 			}
 		}
 
