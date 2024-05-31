@@ -212,7 +212,7 @@ class MarketplaceApi {
 		);
 
 		if (
-			! is_wp_error( $response ) 
+			! is_wp_error( $response )
 			&& 200 === wp_remote_retrieve_response_code( $response )
 		) {
 			$body = wp_remote_retrieve_body( $response );
