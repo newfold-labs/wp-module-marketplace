@@ -6,7 +6,7 @@ describe( 'Marketplace Page', function () {
 
 	before( () => {
 
-		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
+		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace', { failOnNonZeroExit: false } );
 
 		cy.intercept(
 			{
@@ -33,8 +33,8 @@ describe( 'Marketplace Page', function () {
 		cy.checkA11y( appClass + '-app-body' );
 	} );
 
-	it( 'Product grid has 4 items', () => {
-		cy.get( '.marketplace-item' ).should( 'have.length', 4 );
+	it( 'Product grid has 5 items', () => {
+		cy.get( '.marketplace-item' ).should( 'have.length', 5 );
 	} );
 
 	it( 'First product card renders correctly', () => {
@@ -103,6 +103,25 @@ describe( 'Marketplace Page', function () {
 			.scrollIntoView()
 			.should( 'have.attr', 'target' )
 			.and( 'include', '_blank' );
+	} );
+
+	it( 'Product page Secondary CTA links properly', () => {
+		cy.get( '#marketplace-item-a2ff70f1-9670-4e25-a0e1-a068d3e43d55' ).as(
+			'card'
+		);
+
+		cy.get( '@card' )
+			.findByRole( 'link', { name: 'Learn More' } )
+			.scrollIntoView()
+			.should( 'be.visible' )
+			.and( 'have.attr', 'target', '_self' )
+			.and( 'have.attr', 'href' )
+			.and(
+				'include',
+				'page=' +
+					Cypress.env( 'pluginId' ) +
+					'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858'
+			);
 	} );
 
 	it( 'Category Tab Filters properly', () => {

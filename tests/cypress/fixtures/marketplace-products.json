@@ -109,6 +109,32 @@
                 "price_formatted": "$99.00"
             },
             {
+                "id": "a2ff70f1-9670-4e25-a0e1-a068d3e43d55",
+                "name": "Yoast Premium (Product Page)",
+                "version": null,
+                "description": "SEO made easy! Improve your ranking in search engines, boost performance and visibility, get social previews, a redirect manager, internal linking suggestions and 24\/7 premium support.",
+                "productThumbnailUrl": "https:\/\/cdn.hiive.space\/products\/thumbs\/Yoast-PRO.webp",
+                "primaryUrl": "https:\/\/yoa.st\/bh-premium?utm_source=wp-admin%2Fadmin.php&utm_medium=brand_plugin",
+                "primaryCallToAction": "Buy Now",
+                "secondaryUrl": "549e5e29-735f-4e09-892e-766ca9b59858",
+                "secondaryCallToAction": "Learn More",
+                "clickToBuyId": "57d6a568-783c-45e2-a388-847cff155897",
+                "type": "plugin",
+                "price": "99.00",
+                "vendor_id": "03e93b44-9a95-400f-bc0b-f53c2bfa91cf",
+                "priority": 100,
+                "createdAt": "2022-10-07T15:37:40.000000Z",
+                "updatedAt": "2022-10-07T15:37:40.000000Z",
+                "categories": [
+                    "Featured"
+                ],
+                "vendor": {
+                    "name": "Yoast",
+                    "url": "https:\/\/yoast.com\/"
+                },
+                "price_formatted": "$99.00"
+            },
+            {
                 "id": "2a1dadb5-f58d-4ae4-a26b-27efb09136eb",
                 "name": "Highend",
                 "version": null,
