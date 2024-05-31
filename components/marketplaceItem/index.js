@@ -1,3 +1,4 @@
+import { validate as isUuid } from 'uuid';
 import { Button, Card, Link, Title } from '@newfold/ui-component-library';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
@@ -150,6 +151,54 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 		return primaryCTA;
 	};
 
+	const renderSecondaryCTA = ( item ) => {
+		let secondaryCTA = '';
+		// If value is UUID, it is an internal link to a prodct page
+		const isInternal = isUuid( item.secondaryUrl );
+
+		const getLinkAttributes = () => {
+			const attributes = {
+				as: 'a',
+				className:
+					'nfd-inline-flex nfd-items-center nfd-gap-1.5 nfd-w-max nfd-no-underline',
+				href: generateSecondaryUrl(),
+				target: isInternal ? '_self' : '_blank',
+				onClick: handleNavigate,
+			};
+
+			return attributes;
+		};
+
+		const handleNavigate = ( e ) => {
+			const navigate = methods.useNavigate();
+			if ( isInternal ) {
+				e.preventDefault();
+				navigate( `/marketplace/product/${ item.secondaryUrl }` );
+			}
+		};
+
+		const generateSecondaryUrl = () => {
+			if ( isInternal ) {
+				return `${ window.NewfoldRuntime.admin_url }?page=bluehost#/marketplace/product/${ item.secondaryUrl }`;
+			}
+
+			return item.secondaryUrl;
+		};
+
+		if ( item.secondaryCallToAction && item.secondaryUrl ) {
+			secondaryCTA = (
+				<Link { ...getLinkAttributes() }>
+					<span className="nfd-text-primary">
+						{ item.secondaryCallToAction }
+					</span>
+					<ArrowRightIcon className="nfd-text-[#18181B] nfd-w-3" />
+				</Link>
+			);
+		}
+
+		return secondaryCTA;
+	};
+
 	const renderPrice = ( item ) => {
 		let pricewrap,
 			price,
@@ -198,20 +247,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 					{ item.name }
 				</Title>
 				<p>{ item.description }</p>
-
-				{ item.secondaryCallToAction && (
-					<Link
-						as="a"
-						href={ item.secondaryUrl }
-						target="_blank"
-						className="nfd-inline-flex nfd-items-center nfd-gap-1.5 nfd-w-max nfd-no-underline"
-					>
-						<span className="nfd-text-primary">
-							{ item.secondaryCallToAction }
-						</span>
-						<ArrowRightIcon className="nfd-text-[#18181B] nfd-w-3" />
-					</Link>
-				) }
+				{ renderSecondaryCTA( item ) }
 			</Card.Content>
 			<Card.Footer className="nfd-flex nfd-justify-between nfd-items-center nfd-flex-wrap nfd-gap-2 marketplace-item-footer">
 				{ renderPrice( item ) }
