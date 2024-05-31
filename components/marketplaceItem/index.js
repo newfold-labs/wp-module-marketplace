@@ -179,7 +179,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 
 		const generateSecondaryUrl = () => {
 			if ( isInternal ) {
-				return `${ window.NewfoldRuntime.admin_url }?page=bluehost#/marketplace/product/${ item.secondaryUrl }`;
+				return `${ window.NewfoldRuntime.admin_url }admin.php?page=bluehost#/marketplace/product/${ item.secondaryUrl }`;
 			}
 
 			return item.secondaryUrl;
