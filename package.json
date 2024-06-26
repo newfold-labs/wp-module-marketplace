@@ -13,6 +13,6 @@
   "dependencies": {
     "@heroicons/react": "^2.1.4",
     "@newfold/ui-component-library": "^1.1.0",
-    "uuid": "^9.0.1"
+    "uuid": "^10.0.0"
   }
 }
