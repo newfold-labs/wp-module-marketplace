@@ -144,7 +144,7 @@ import { default as MarketplaceItem } from '../marketplaceItem/';
 
 
 	return (
-		<div className={methods.classnames('newfold-marketplace-wrapper newfold-marketplaceLite-wrapper')}>
+		<div className={methods.classNames('newfold-marketplace-wrapper newfold-marketplaceLite-wrapper')}>
 			{ isLoading && 
 				renderSkeleton()
 			}

@@ -207,7 +207,7 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 				description={ constants.text.subTitle }
 			/>
 			<Container.Block
-				className={ methods.classnames(
+				className={ methods.classNames(
 					'newfold-marketplace-wrapper',
 					`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ] }`
 				) }
