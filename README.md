@@ -39,7 +39,7 @@ A module for rendering product data and interacting with the Hiive marketplace A
  composer require newfold-labs/wp-module-marketplace
  ```
 
-[More on NewFold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
+[More on Newfold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
 
 ## Features
 
