@@ -1,7 +1,7 @@
 // <reference types="Cypress" />
 const marketplaceProductsFixture = require( '../fixtures/marketplace-products.json' );
 
-describe( 'Plugins Premium Tab', () => {
+describe( 'Plugins Premium Tab', { testIsolation: true }, () => {
 
 	beforeEach( () => {
 		cy.intercept(
@@ -14,6 +14,8 @@ describe( 'Plugins Premium Tab', () => {
 				delay: 1000,
 			}
 		).as('getMarketplaceProducts');
+
+		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
 		cy.visit( '/wp-admin/plugin-install.php?tab=premium-marketplace' );
 	});
 
