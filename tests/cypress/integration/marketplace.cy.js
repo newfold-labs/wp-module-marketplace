@@ -1,10 +1,10 @@
 // <reference types="Cypress" />
 const marketplaceProductsFixture = require( '../fixtures/marketplace-products.json' );
 
-describe( 'Marketplace Page', function () {
+describe( 'Marketplace Page', { testIsolation: true }, () => {
 	const appClass = '.' + Cypress.env( 'appId' );
 
-	before( () => {
+	beforeEach( () => {
 
 		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
 
@@ -16,6 +16,7 @@ describe( 'Marketplace Page', function () {
 			marketplaceProductsFixture
 		).as( 'marketplace_products' );
 
+		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
 				Cypress.env( 'pluginId' ) +

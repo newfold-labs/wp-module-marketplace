@@ -1,6 +1,6 @@
 const productPageFixtures = require( '../fixtures/product-page.json' );
 
-describe( 'Product Page', function () {
+describe( 'Product Page', { testIsolation: true }, () => {
 	const appClass = '.' + Cypress.env( 'appId' );
 
 	beforeEach( () => {
@@ -15,6 +15,7 @@ describe( 'Product Page', function () {
 			}
 		).as( 'productPageData' );
 
+		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
 				Cypress.env( 'pluginId' ) +
