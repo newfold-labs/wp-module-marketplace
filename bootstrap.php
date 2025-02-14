@@ -14,8 +14,13 @@ if ( function_exists( 'add_action' ) ) {
 			register(
 				array(
 					'name'     => 'marketplace',
-					'label'    => __( 'Marketplace', 'newfold-module-marketplace' ),
+					'label'    => __( 'Marketplace', 'wp-module-marketplace' ),
 					'callback' => function ( Container $container ) {
+
+						if ( ! defined( 'NFD_MARKETPLACE_DIR' ) ) {
+							define( 'NFD_MARKETPLACE_DIR', __DIR__ );
+						}
+
 						new Marketplace( $container );
 					},
 					'isActive' => true,
