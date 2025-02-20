@@ -122,7 +122,7 @@ class PluginsMarketplace {
 						'Unlock the full potential of your WordPress website with premium plugins from %s.',
 						'wp-module-marketplace'
 					),
-					ucwords( container()->plugin()->id )
+					esc_html__( ucwords( container()->plugin()->id ) )
 				),
 			)
 		);
