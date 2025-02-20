@@ -116,12 +116,15 @@ class PluginsMarketplace {
 			array(
 				'restApiRoot'            => \get_home_url() . '/index.php?rest_route=',
 				'restApiNonce'           => wp_create_nonce( 'wp_rest' ),
-				'marketplaceDescription' => printf(
-					__(
-						'Unlock the full potential of your WordPress website with premium plugins from %s.',
-						'wp-module-marketplace'
-					),
-					esc_html( ucwords( container()->plugin()->id ) )
+				'marketplaceDescription' => esc_html(
+					printf(
+						__(
+							/* translators: The brand from the plugin is inserted into the string */
+							'Unlock the full potential of your WordPress website with premium plugins from %s.',
+							'wp-module-marketplace'
+						),
+						ucwords( container()->plugin()->id )
+					)
 				),
 			)
 		);
