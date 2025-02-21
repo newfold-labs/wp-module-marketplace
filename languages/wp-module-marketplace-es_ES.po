@@ -35,24 +35,24 @@ msgstr "Desbloquea todo el potencial de tu sitio web WordPress con plugins premi
 
 #: components/marketplace/index.js:11
 msgid "Explore our featured collection of tools and services."
-msgstr ""
+msgstr "Explora nuestra colección destacada de herramientas y servicios."
 
 #: components/marketplace/index.js:15
 msgid "Oops, there was an error loading the marketplace, please try again later."
-msgstr ""
+msgstr "Vaya, hubo un error al cargar el marketplace. Por favor, inténtalo de nuevo más tarde."
 
 #: components/marketplace/index.js:19
 msgid "Sorry, no marketplace items. Please, try again later."
-msgstr ""
+msgstr "Lo sentimos, no hay artículos en el marketplace. Por favor, inténtalo de nuevo más tarde."
 
 #: components/marketplace/index.js:23
 msgid "Load More"
-msgstr ""
+msgstr "Cargar más"
 
 #: components/productPage/index.js:14
 msgid "Oops! Something Went Wrong"
-msgstr ""
+msgstr "¡Vaya! Algo salió mal"
 
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
-msgstr ""
+msgstr "Ocurrió un error al cargar el contenido. Por favor, inténtalo de nuevo más tarde."

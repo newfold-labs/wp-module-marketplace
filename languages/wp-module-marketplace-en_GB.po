@@ -30,24 +30,24 @@ msgstr "Unlock the full potential of your WordPress website with premium plugins
 
 #: components/marketplace/index.js:11
 msgid "Explore our featured collection of tools and services."
-msgstr ""
+msgstr "Explore our featured collection of tools and services."
 
 #: components/marketplace/index.js:15
 msgid "Oops, there was an error loading the marketplace, please try again later."
-msgstr ""
+msgstr "Oops, there was an error loading the marketplace. Please try again later."
 
 #: components/marketplace/index.js:19
 msgid "Sorry, no marketplace items. Please, try again later."
-msgstr ""
+msgstr "Sorry, no marketplace items. Please try again later."
 
 #: components/marketplace/index.js:23
 msgid "Load More"
-msgstr ""
+msgstr "Load more"
 
 #: components/productPage/index.js:14
 msgid "Oops! Something Went Wrong"
-msgstr ""
+msgstr "Oops! Something went wrong"
 
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
-msgstr ""
+msgstr "An error occurred while loading the content. Please try again later."

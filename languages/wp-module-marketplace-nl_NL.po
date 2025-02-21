@@ -35,24 +35,24 @@ msgstr "Ontgrendel het volledige potentieel van uw WordPress website met premium
 
 #: components/marketplace/index.js:11
 msgid "Explore our featured collection of tools and services."
-msgstr ""
+msgstr "Ontdek onze uitgelichte collectie tools en services."
 
 #: components/marketplace/index.js:15
 msgid "Oops, there was an error loading the marketplace, please try again later."
-msgstr ""
+msgstr "Oeps, er is een fout opgetreden bij het laden van de marketplace. Probeer het later opnieuw."
 
 #: components/marketplace/index.js:19
 msgid "Sorry, no marketplace items. Please, try again later."
-msgstr ""
+msgstr "Sorry, er zijn geen marketplace-items beschikbaar. Probeer het later opnieuw."
 
 #: components/marketplace/index.js:23
 msgid "Load More"
-msgstr ""
+msgstr "Meer laden"
 
 #: components/productPage/index.js:14
 msgid "Oops! Something Went Wrong"
-msgstr ""
+msgstr "Oeps! Er ging iets mis"
 
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de inhoud. Probeer het later opnieuw."
