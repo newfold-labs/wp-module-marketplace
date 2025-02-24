@@ -14,7 +14,7 @@ msgstr ""
 "X-Domain: wp-module-marketplace\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bootstrap.php:17
+#: bootstrap.php:15
 #: components/marketplace/index.js:10
 msgid "Marketplace"
 msgstr "Marketplace"
@@ -24,7 +24,8 @@ msgstr "Marketplace"
 msgid "Premium"
 msgstr "Premium"
 
-#: includes/PluginsMarketplace.php:120
+#. translators: The brand from the plugin is inserted into the string
+#: includes/PluginsMarketplace.php:121
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Unlock the full potential of your WordPress website with premium plugins from %s."
 
