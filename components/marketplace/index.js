@@ -7,11 +7,20 @@ const defaults = {
 	perPage: 12,
 	appendCategoryToTitle: true,
 	text: {
-		title: 'Marketplace',
-		subTitle: 'Explore our featured collection of tools and services.',
-		error: 'Oops, there was an error loading the marketplace, please try again later.',
-		noProducts: 'Sorry, no marketplace items. Please, try again later.',
-		loadMore: 'Load More',
+		title: __( 'Marketplace', 'wp-module-marketplace' ),
+		subTitle: __(
+			'Explore our featured collection of tools and services.',
+			'wp-module-marketplace'
+		),
+		error: __(
+			'Oops, there was an error loading the marketplace, please try again later.',
+			'wp-module-marketplace'
+		),
+		noProducts: __(
+			'Sorry, no marketplace items. Please, try again later.',
+			'wp-module-marketplace'
+		),
+		loadMore: __( 'Load More', 'wp-module-marketplace' ),
 	},
 };
 
