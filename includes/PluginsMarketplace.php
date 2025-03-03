@@ -116,7 +116,7 @@ class PluginsMarketplace {
 			array(
 				'restApiRoot'            => \get_home_url() . '/index.php?rest_route=',
 				'restApiNonce'           => wp_create_nonce( 'wp_rest' ),
-				'marketplaceDescription' => printf(
+				'marketplaceDescription' => sprintf(
 					/* translators: The brand from the plugin is inserted into the string */
 					esc_html__(
 						'Unlock the full potential of your WordPress website with premium plugins from %s.',
