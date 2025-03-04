@@ -1,7 +1,7 @@
 import { Title } from '@newfold/ui-component-library';
 import errorVector from '../../includes/assets/img/dog-walking.svg';
 
-const ProductPageError = ( constants ) => {
+const ProductPageError = ( { constants } ) => {
 	return (
 		<div aria-live="assertive">
 			<div
