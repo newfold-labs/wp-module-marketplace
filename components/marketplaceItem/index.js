@@ -135,6 +135,9 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 						target="_blank"
 						data-action="load-nfd-ctb"
 						data-ctb-id={ item.clickToBuyId }
+						data-nfd-click="newfold-marketplaceitem-click"
+						data-nfd-event-key={ item.primaryCallToAction }
+						data-nfd-product-id={ item.clickToBuyId }
 					>
 						{ item.primaryCallToAction }
 					</Button>
@@ -187,7 +190,12 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 
 		if ( item.secondaryCallToAction && item.secondaryUrl ) {
 			secondaryCTA = (
-				<Link { ...getLinkAttributes() }>
+				<Link
+					{ ...getLinkAttributes() }
+					data-nfd-click="newfold-marketplaceitem-click"
+					data-nfd-event-key={ item.secondaryCallToAction }
+					data-nfd-product-id={ item.id }
+				>
 					<span className="nfd-text-primary">
 						{ item.secondaryCallToAction }
 					</span>
