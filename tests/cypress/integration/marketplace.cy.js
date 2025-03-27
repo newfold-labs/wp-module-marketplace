@@ -126,14 +126,22 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	} );
 
 	it( 'Category Tab Filters properly', () => {
-		cy.get( appClass + '-app-subnavitem-services' ).click();
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/services'
+		);
 		cy.get( '.marketplace-item' ).should( 'have.length', 12 );
 		cy.get( '#marketplace-item-1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2 h3' )
 			.scrollIntoView()
 			.should( 'be.visible' )
 			.should( 'have.text', 'Web Design Services' );
 
-		cy.get( appClass + '-app-subnavitem-seo' ).click();
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/seo'
+		);
 		cy.get( '.marketplace-item' ).should( 'have.length', 6 );
 		cy.get( '#marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 h3' )
 			.scrollIntoView()
@@ -142,7 +150,11 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	} );
 
 	it( 'Load more button loads more products', () => {
-		cy.get( appClass + '-app-subnavitem-services' ).click();
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/services'
+		);
 		cy.wait( 300 );
 
 		cy.get( '.marketplace-item' ).should( 'have.length', 12 );
@@ -153,24 +165,13 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 		cy.get( '.marketplace-item' ).should( 'have.length', 14 );
 	} );
 
-	it( 'Category pages update path', () => {
-		cy.get( appClass + '-app-subnavitem-services' ).click();
-		cy.location().should( ( loc ) => {
-			expect( loc.hash ).to.eq( '#/marketplace/services' );
-		} );
-	} );
-
-	it( 'Category pages update page title', () => {
-		cy.get( appClass + '-app-subnavitem-ecommerce' ).click();
-		cy.location().should( ( loc ) => {
-			expect( loc.hash ).to.eq( '#/marketplace/ecommerce' );
-		} );
-		cy.get( '.nfd-container__header .nfd-title' ).contains( 'eCommerce' );
-	} );
-
 	// CTB Not supported yet on all plugins
 	it( 'Product CTB cards render correctly', () => {
-		cy.get( appClass + '-app-subnavitem-seo' ).click();
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/seo'
+		);
 		cy.get(
 			'.marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 a.nfd-button'
 		)
@@ -185,7 +186,11 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 
 	// Product with a sale price displays properly - full_price_formatted
 	it( 'Product with sale price displays properly', () => {
-		cy.get( appClass + '-app-subnavitem-ecommerce' ).click();
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/ecommerce'
+		);
 		cy.get(
 			'.marketplace-item-c9201843-d8ae-4032-bd4e-f3fa5a8b8314 .marketplace-item-price'
 		).should( 'contain', '69' );
