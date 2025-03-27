@@ -2,7 +2,6 @@
 const marketplaceProductsFixture = require( '../fixtures/marketplace-products.json' );
 
 describe( 'Plugins Premium Tab', { testIsolation: true }, () => {
-
 	beforeEach( () => {
 		cy.intercept(
 			{
@@ -13,11 +12,11 @@ describe( 'Plugins Premium Tab', { testIsolation: true }, () => {
 				body: marketplaceProductsFixture,
 				delay: 1000,
 			}
-		).as('getMarketplaceProducts');
+		).as( 'getMarketplaceProducts' );
 
-		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
+		cy.login( Cypress.env( 'wpUsername' ), Cypress.env( 'wpPassword' ) );
 		cy.visit( '/wp-admin/plugin-install.php?tab=premium-marketplace' );
-	});
+	} );
 
 	it( 'Premium tab exist', () => {
 		cy.get( '.wrap' )
@@ -35,37 +34,32 @@ describe( 'Plugins Premium Tab', { testIsolation: true }, () => {
 	} );
 
 	it( 'Should have products', () => {
-		cy.wait('@getMarketplaceProducts');
+		cy.wait( '@getMarketplaceProducts' );
 		cy.get( '#the-list' ).children( '.plugin-card' ).should( 'be.visible' );
 	} );
 
-	it( 'Product should display thumbnail', () => {
-		cy.wait('@getMarketplaceProducts');
+	it( 'Product should display properly', () => {
+		cy.wait( '@getMarketplaceProducts' );
+
+		// thumbnail
 		cy.get( '.plugin-card:first-of-type' )
 			.find( '.nfd-plugin-card-thumbnail img' )
 			.scrollIntoView()
 			.should( 'be.visible' )
 			.should( 'have.attr', 'src' );
-	} );
 
-	it( 'Product should have a name', () => {
-		cy.wait('@getMarketplaceProducts');
+		// title
 		cy.get( '.plugin-card:first-of-type' )
 			.find( '.nfd-plugin-card-title h3' )
 			.invoke( 'text' )
 			.should( 'not.be.empty' );
-	} );
 
-	it( 'Product should have description', () => {
-		cy.wait('@getMarketplaceProducts');
+		// description
 		cy.get( '.plugin-card:first-of-type' )
 			.find( '.nfd-plugin-card-desc p' )
 			.invoke( 'text' )
 			.should( 'not.be.empty' );
-	} );
 
-	it( 'Product should have actions', () => {
-		cy.wait('@getMarketplaceProducts');
 		// primary action
 		cy.get( '.plugin-card:first-of-type' )
 			.find( '.nfd-plugin-card-actions a:first-of-type' )
