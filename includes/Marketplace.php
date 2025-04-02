@@ -50,5 +50,4 @@ class Marketplace {
 		array_push( $subnav, $marketplace );
 		return $subnav;
 	}
-
 }
