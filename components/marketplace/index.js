@@ -223,12 +223,7 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 					title={ getSectionTitle() }
 					description={ constants.text.subTitle }
 				/>
-				<Container.Block
-					className={ methods.classNames(
-						'newfold-marketplace-wrapper',
-						`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ] }`
-					) }
-				>
+				<Container.Block className="newfold-marketplace-wrapper">
 					{ isLoading && renderSkeleton() }
 					{ isError && (
 						<Title as="h3" size="3">

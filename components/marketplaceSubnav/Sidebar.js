@@ -8,17 +8,17 @@ export const Sidebar = ( { categories, activeCategoryIndex } ) => {
 		<aside className={ 'nfd-marketplace-sidebar' }>
 			<SidebarNavigation activePath={ activePath }>
 				<SidebarNavigation.Sidebar className="nfd-min-w-60">
+					<Title
+						as="p"
+						className="nfd-marketplace-categories-title nfd-mb-4"
+					>
+						{ __( 'Categories', 'wp-module-marketplace' ) }
+					</Title>
 					<SidebarNavigation.MenuItem
 						label="Categories"
 						defaultOpen={ true }
 						className={ 'nfd-hidden' }
 					>
-						<Title
-							as="h4"
-							className="nfd-marketplace-categories-title nfd-mb-4"
-						>
-							{ __( 'Categories', 'wp-module-marketplace' ) }
-						</Title>
 						{ categories.map( ( cat ) => (
 							<SidebarNavigation.SubmenuItem
 								pathProp="id"

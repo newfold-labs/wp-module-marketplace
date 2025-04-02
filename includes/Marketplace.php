@@ -45,7 +45,7 @@ class Marketplace {
 		$marketplace = array(
 			'title'    => __( 'Marketplace', 'wp-module-marketplace' ),
 			'route'    => $brand . '#/marketplace',
-			'priority' => 50,
+			'priority' => 25,
 		);
 		array_push( $subnav, $marketplace );
 		return $subnav;
