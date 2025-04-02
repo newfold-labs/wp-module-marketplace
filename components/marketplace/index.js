@@ -1,6 +1,7 @@
 import { Container, Title } from '@newfold/ui-component-library';
 import { default as MarketplaceList } from '../marketplaceList/';
 import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
+import { Sidebar } from '../marketplaceSubnav/Sidebar';
 
 const defaults = {
 	eventendpoint: '/newfold-data/v1/events/',
@@ -210,39 +211,47 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 	};
 
 	return (
-		<>
-			<Container.Header
-				title={ getSectionTitle() }
-				description={ constants.text.subTitle }
+		<div className="nfd-page-content nfd-flex nfd-relative nfd-gap-6 nfd-max-w-full nfd-my-0 nfd-flex-col md:nfd-flex-row">
+			<Sidebar
+				categories={ marketplaceCategories }
+				activeCategoryIndex={ activeCategoryIndex }
+				methods={ methods }
+				constants={ constants }
 			/>
-			<Container.Block
-				className={ methods.classNames(
-					'newfold-marketplace-wrapper',
-					`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ] }`
-				) }
-			>
-				{ isLoading && renderSkeleton() }
-				{ isError && (
-					<Title as="h3" size="3">
-						{ constants.text.error }
-					</Title>
-				) }
-				{ ! isLoading && ! isError && (
-					<MarketplaceList
-						marketplaceItems={ products }
-						category={
-							marketplaceCategories[ activeCategoryIndex ]
-						}
-						currentCount={
-							marketplaceCategories[ activeCategoryIndex ]
-								.currentCount
-						}
-						methods={ methods }
-						constants={ constants }
-					/>
-				) }
-			</Container.Block>
-		</>
+			<Container>
+				<Container.Header
+					title={ getSectionTitle() }
+					description={ constants.text.subTitle }
+				/>
+				<Container.Block
+					className={ methods.classNames(
+						'newfold-marketplace-wrapper',
+						`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ] }`
+					) }
+				>
+					{ isLoading && renderSkeleton() }
+					{ isError && (
+						<Title as="h3" size="3">
+							{ constants.text.error }
+						</Title>
+					) }
+					{ ! isLoading && ! isError && (
+						<MarketplaceList
+							marketplaceItems={ products }
+							category={
+								marketplaceCategories[ activeCategoryIndex ]
+							}
+							currentCount={
+								marketplaceCategories[ activeCategoryIndex ]
+									.currentCount
+							}
+							methods={ methods }
+							constants={ constants }
+						/>
+					) }
+				</Container.Block>
+			</Container>
+		</div>
 	);
 };
 
