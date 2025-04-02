@@ -226,7 +226,7 @@ const Marketplace = ( { methods, constants, ...props } ) => {
 				<Container.Block
 					className={ methods.classNames(
 						'newfold-marketplace-wrapper',
-						`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ] }`
+						`newfold-marketplace-${ marketplaceCategories[ activeCategoryIndex ].name }`
 					) }
 				>
 					{ isLoading && renderSkeleton() }
