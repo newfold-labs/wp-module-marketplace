@@ -15,7 +15,7 @@ describe( 'Product Page', { testIsolation: true }, () => {
 			}
 		).as( 'productPageData' );
 
-		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
+		cy.login( Cypress.env( 'wpUsername' ), Cypress.env( 'wpPassword' ) );
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
 				Cypress.env( 'pluginId' ) +
@@ -26,7 +26,7 @@ describe( 'Product Page', { testIsolation: true }, () => {
 	it( 'Show loading state while fetching', () => {
 		cy.get(
 			appClass +
-				'-app-marketplace-container div[aria-label="Fetching product details"]'
+				'-app-marketplace-page div[aria-label="Fetching product details"]'
 		).should( 'be.visible' );
 	} );
 
@@ -49,7 +49,7 @@ describe( 'Product Page', { testIsolation: true }, () => {
 			}
 		).as( 'productPageError' );
 		cy.wait( '@productPageError' );
-		cy.get( appClass + '-app-marketplace-container div[role="alert"]' )
+		cy.get( appClass + '-app-marketplace-page div[role="alert"]' )
 			.find( 'img[alt="Dog walking with a leash"]' )
 			.should( 'exist' )
 			.and( 'be.visible' );
