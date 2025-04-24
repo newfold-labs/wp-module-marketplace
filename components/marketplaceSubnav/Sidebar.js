@@ -1,15 +1,12 @@
 import { SidebarNavigation, Title } from '@newfold/ui-component-library';
 
-export const Sidebar = ( { categories, activeCategoryIndex } ) => {
-	const activePath = activeCategoryIndex
-		? categories[ activeCategoryIndex ].name
-		: 'featured';
+export const Sidebar = ( { categories, activePath } ) => {
 	return (
 		<aside className={ 'nfd-marketplace-sidebar' }>
 			<SidebarNavigation activePath={ activePath }>
 				<SidebarNavigation.Sidebar className="nfd-min-w-60">
 					<Title
-						as="p"
+						as="h4"
 						className="nfd-marketplace-categories-title nfd-mb-4"
 					>
 						{ __( 'Categories', 'wp-module-marketplace' ) }
