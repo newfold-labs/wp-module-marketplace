@@ -9,8 +9,8 @@ export const Mobilenav = ( { categories, activePath } ) => {
 	return (
 		<aside className={ 'nfd-marketplace-sidebar' }>
 			<Title
-				as="h4"
-				className="nfd-marketplace-categories-title nfd-mb-4"
+				as="h2"
+				className="nfd-marketplace-categories-title nfd-text-base nfd-mb-4"
 			>
 				{ __( 'Categories', 'wp-module-marketplace' ) }
 			</Title>

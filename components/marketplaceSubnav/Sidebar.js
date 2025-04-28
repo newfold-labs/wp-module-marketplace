@@ -6,8 +6,8 @@ export const Sidebar = ( { categories, activePath } ) => {
 			<SidebarNavigation activePath={ activePath }>
 				<SidebarNavigation.Sidebar className="nfd-min-w-60">
 					<Title
-						as="h4"
-						className="nfd-marketplace-categories-title nfd-mb-4"
+						as="h2"
+						className="nfd-marketplace-categories-title nfd-text-base nfd-mb-4"
 					>
 						{ __( 'Categories', 'wp-module-marketplace' ) }
 					</Title>
