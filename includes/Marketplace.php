@@ -32,6 +32,9 @@ class Marketplace {
 		add_action( 'wp_loaded', array( PluginsMarketplace::class, 'init' ) );
 
 		\add_filter( 'nfd_plugin_subnav', array( $this, 'add_nfd_subnav' ) );
+		
+		\add_action( 'init', array( __CLASS__, 'loadTextDomain' ), 100 );
+		
 	}
 
 	/**
@@ -49,5 +52,18 @@ class Marketplace {
 		);
 		array_push( $subnav, $marketplace );
 		return $subnav;
+	}
+	
+	/**
+	 * Load text domain for Module
+	 *
+	 * @return void
+	 */
+	public static function loadTextDomain() {
+		\load_plugin_textdomain(
+			'wp-module-marketplace',
+			false,
+			dirname( plugin_basename( NFD_MARKETPLACE_DIR ) ) . '/' . basename( NFD_MARKETPLACE_DIR ) . '/languages'
+		);
 	}
 }
