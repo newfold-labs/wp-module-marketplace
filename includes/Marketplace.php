@@ -32,19 +32,17 @@ class Marketplace {
 		add_action( 'wp_loaded', array( PluginsMarketplace::class, 'init' ) );
 
 		\add_filter( 'nfd_plugin_subnav', array( $this, 'add_nfd_subnav' ) );
-		
+
 		\add_action( 'init', array( $this, 'loadTextDomain' ), 100 );
-		
+
 		\add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
-		
+
 		add_filter(
 			'load_script_translation_file',
 			array( $this, 'load_script_translation_file' ),
 			10,
 			3
 		);
-		
-		
 	}
 
 	/**
@@ -63,7 +61,7 @@ class Marketplace {
 		array_push( $subnav, $marketplace );
 		return $subnav;
 	}
-	
+
 	/**
 	 * Load text domain for Module
 	 *
@@ -76,12 +74,12 @@ class Marketplace {
 			dirname( plugin_basename( NFD_MARKETPLACE_DIR ) ) . '/' . basename( NFD_MARKETPLACE_DIR ) . '/languages'
 		);
 	}
-	
+
 	/**
 	 * Register empty script and script translations
 	 */
 	public static function assets() {
-		
+
 		// Register features API script
 		$scriptPath = container()->plugin()->url . 'vendor/newfold-labs/wp-module-marketplace/assets/js/i18n-handle.js';
 		wp_register_script(
@@ -91,16 +89,16 @@ class Marketplace {
 			container()->plugin()->version,
 			true
 		);
-		
+
 		wp_enqueue_script( 'newfold-marketplace' );
-		
-		 \wp_set_script_translations(
+
+		\wp_set_script_translations(
 			'newfold-marketplace',
 			'wp-module-marketplace',
 			container()->plugin()->url . 'vendor/newfold-labs/wp-module-marketplace/languages'
 		);
 	}
-	
+
 	/**
 	 * Filters the file path for the JS translation JSON.
 	 *
@@ -113,18 +111,18 @@ class Marketplace {
 	 * @return string Modified file path for the translation JSON.
 	 */
 	public function load_script_translation_file( $file, $handle, $domain ) {
-		if ( $handle === 'newfold-marketplace' ) {
+		if ( 'newfold-marketplace' === $handle ) {
 			$path   = NFD_MARKETPLACE_DIR . '/languages/';
 			$locale = determine_locale();
-			
+
 			$file_base = 'default' === $domain
 				? $locale
 				: $domain . '-' . $locale;
 			$file      = $path . $file_base . '-' . md5( 'components/marketplace/index.js' )
 				. '.json';
-			
+
 		}
-		
+
 		return $file;
 	}
 }
