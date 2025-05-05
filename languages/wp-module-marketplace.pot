@@ -13,7 +13,8 @@ msgstr ""
 "X-Domain: wp-module-marketplace\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:59
+#: components/marketplace/index.js:11
 msgid "Marketplace"
 msgstr ""
 
@@ -27,20 +28,25 @@ msgstr ""
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr ""
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:12
 msgid "Explore our featured collection of tools and services."
 msgstr ""
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:16
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr ""
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:20
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr ""
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:24
 msgid "Load More"
+msgstr ""
+
+#: components/marketplace/index.js:25
+#: components/marketplaceSubnav/Sidebar.js:15
+msgid "Categories"
 msgstr ""
 
 #: components/productPage/index.js:14
