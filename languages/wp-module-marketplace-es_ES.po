@@ -20,9 +20,10 @@ msgstr ""
 "X-Crowdin-File-ID: 38\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:59
+#: components/marketplace/index.js:11
 msgid "Marketplace"
-msgstr "Tienda"
+msgstr "Marketplace"
 
 #: includes/PluginsMarketplace.php:89
 #: includes/Themes.php:149
@@ -34,19 +35,19 @@ msgstr "Premium"
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Desbloquea todo el potencial de tu sitio web WordPress con plugins premium de %s."
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:12
 msgid "Explore our featured collection of tools and services."
 msgstr "Explora nuestra colección destacada de herramientas y servicios."
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:16
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr "Vaya, hubo un error al cargar el marketplace. Por favor, inténtalo de nuevo más tarde."
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:20
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr "Lo sentimos, no hay artículos en el marketplace. Por favor, inténtalo de nuevo más tarde."
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:24
 msgid "Load More"
 msgstr "Cargar más"
 
@@ -57,3 +58,8 @@ msgstr "¡Vaya! Algo salió mal"
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
 msgstr "Ocurrió un error al cargar el contenido. Por favor, inténtalo de nuevo más tarde."
+
+#: components/marketplace/index.js:25
+#: components/marketplaceSubnav/Sidebar.js:15
+msgid "Categories"
+msgstr "Categorías"

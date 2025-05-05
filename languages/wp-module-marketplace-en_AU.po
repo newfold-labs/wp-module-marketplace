@@ -15,7 +15,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:59
+#: components/marketplace/index.js:11
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -29,19 +30,19 @@ msgstr "Premium"
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Unlock the full potential of your WordPress website with premium plugins from %s."
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:12
 msgid "Explore our featured collection of tools and services."
 msgstr "Explore our featured collection of tools and services."
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:16
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr "Oops, there was an error loading the marketplace. Please try again later."
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:20
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr "Sorry, no marketplace items. Please try again later."
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:24
 msgid "Load More"
 msgstr "Load more"
 
@@ -52,3 +53,8 @@ msgstr "Oops! Something went wrong"
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
 msgstr "An error occurred while loading the content. Please try again later."
+
+#: components/marketplace/index.js:25
+#: components/marketplaceSubnav/Sidebar.js:15
+msgid "Categories"
+msgstr "Categories"
