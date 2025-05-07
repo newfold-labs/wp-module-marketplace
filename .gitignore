@@ -1,9 +1,12 @@
+
 # Composer
-/vendor
-
-#node_modules
-/node_modules
-
 # System and IDE files
+#node_modules
 .DS_Store
 .idea
+/node_modules
+/tests/_output
+/tests/_support/_generated
+/vendor
+/wordpress
+/wp-content
