@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: bootstrap.php:15
-#: includes/Marketplace.php:59
+#: includes/Marketplace.php:57
 #: components/marketplace/index.js:11
 msgid "Marketplace"
 msgstr "Marketplace"

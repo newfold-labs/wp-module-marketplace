@@ -20,7 +20,7 @@ msgstr ""
 "X-Crowdin-File-ID: 38\n"
 
 #: bootstrap.php:15
-#: includes/Marketplace.php:59
+#: includes/Marketplace.php:57
 #: components/marketplace/index.js:11
 msgid "Marketplace"
 msgstr "Marktplaats"
