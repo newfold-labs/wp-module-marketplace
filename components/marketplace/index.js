@@ -20,7 +20,9 @@ const defaults = {
 			'wp-module-marketplace'
 		),
 		loadMore: __( 'Load More', 'wp-module-marketplace' ),
-	},
+        categories: __( 'Categories', 'wp-module-marketplace' ),
+
+    },
 };
 
 /**

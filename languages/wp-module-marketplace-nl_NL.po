@@ -20,7 +20,8 @@ msgstr ""
 "X-Crowdin-File-ID: 38\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:57
+#: components/marketplace/index.js:11
 msgid "Marketplace"
 msgstr "Marktplaats"
 
@@ -34,19 +35,19 @@ msgstr "Premium"
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Ontgrendel het volledige potentieel van uw WordPress website met premium plugins van %s."
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:12
 msgid "Explore our featured collection of tools and services."
 msgstr "Ontdek onze uitgelichte collectie tools en services."
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:16
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr "Oeps, er is een fout opgetreden bij het laden van de marketplace. Probeer het later opnieuw."
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:20
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr "Sorry, er zijn geen marketplace-items beschikbaar. Probeer het later opnieuw."
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:24
 msgid "Load More"
 msgstr "Meer laden"
 
@@ -57,3 +58,8 @@ msgstr "Oeps! Er ging iets mis"
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
 msgstr "Er is een fout opgetreden bij het laden van de inhoud. Probeer het later opnieuw."
+
+#: components/marketplace/index.js:25
+#: components/marketplaceSubnav/Sidebar.js:15
+msgid "Categories"
+msgstr "Categorieën"
