@@ -1,7 +1,7 @@
 {
     "translation-revision-date": "2025-02-19 15:45",
     "generator": "WP-CLI\/2.12.0",
-    "source": "components\/marketplaceSubnav\/Sidebar.js",
+    "source": "components\/marketplaceSubnav\/Mobilenav.js",
     "domain": "messages",
     "locale_data": {
         "messages": {

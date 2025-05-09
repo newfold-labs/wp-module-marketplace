@@ -21,7 +21,7 @@ msgstr ""
 
 #: bootstrap.php:15
 #: includes/Marketplace.php:57
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:9
 msgid "Marketplace"
 msgstr "Marktplaats"
 
@@ -32,22 +32,23 @@ msgstr "Premium"
 
 #. translators: The brand from the plugin is inserted into the string
 #: includes/PluginsMarketplace.php:121
+#, php-format
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Ontgrendel het volledige potentieel van uw WordPress website met premium plugins van %s."
 
-#: components/marketplace/index.js:12
+#: components/marketplace/index.js:10
 msgid "Explore our featured collection of tools and services."
 msgstr "Ontdek onze uitgelichte collectie tools en services."
 
-#: components/marketplace/index.js:16
+#: components/marketplace/index.js:14
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr "Oeps, er is een fout opgetreden bij het laden van de marketplace. Probeer het later opnieuw."
 
-#: components/marketplace/index.js:20
+#: components/marketplace/index.js:18
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr "Sorry, er zijn geen marketplace-items beschikbaar. Probeer het later opnieuw."
 
-#: components/marketplace/index.js:24
+#: components/marketplace/index.js:22
 msgid "Load More"
 msgstr "Meer laden"
 
@@ -59,7 +60,12 @@ msgstr "Oeps! Er ging iets mis"
 msgid "An error occurred while loading the content. Please try again later."
 msgstr "Er is een fout opgetreden bij het laden van de inhoud. Probeer het later opnieuw."
 
-#: components/marketplace/index.js:25
-#: components/marketplaceSubnav/Sidebar.js:15
+#: components/marketplace/index.js:23
+#: components/marketplaceSubnav/Mobilenav.js:15
+#: components/marketplaceSubnav/Sidebar.js:12
 msgid "Categories"
 msgstr "Categorieën"
+
+#: components/marketplaceBody/Body.js:40
+msgid "All"
+msgstr ""
