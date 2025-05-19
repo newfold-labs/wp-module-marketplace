@@ -1,0 +1,45 @@
+name: Newfold Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      level:
+        description: The level of release to be used.
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: 'patch'
+        required: true
+
+jobs:
+
+  # This job runs the newfold module-prep-release workflow for this module.
+  # prep-release:
+  #   name: Prepare Release
+  #   permissions:
+  #     contents: write
+  #     pull-requests: write
+  #   uses: newfold-labs/workflows/.github/workflows/reusable-module-prep-release.yml@main
+  #   with:
+  #     module-repo: ${{ github.repository }}
+  #     module-branch: 'main'
+  #     level: ${{ inputs.level }}
+  #     json-file: 'package.json'
+  #     php-file: 'includes/Data/Constants.php'
+
+
+  # This runs the newfold reusable-plugin-prep-release workflow for this plugin to prepare a release.
+  prep-release:
+    name: Prepare Release
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: newfold-labs/workflows/.github/workflows/reusable-plugin-prep-release.yml@fix/prs-in-release-prep-workflow
+    with:
+      plugin-repo: ${{ github.repository }}
+      plugin-target-branch: 'main'
+      plugin-source-branch: 'main'
+      level: ${{ inputs.level }}
+      php-file: ""
