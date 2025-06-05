@@ -9,11 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-marketplace\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:57
+#: components/marketplace/index.js:9
 msgid "Marketplace"
 msgstr ""
 
@@ -24,23 +25,34 @@ msgstr ""
 
 #. translators: The brand from the plugin is inserted into the string
 #: includes/PluginsMarketplace.php:121
+#, php-format
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr ""
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:10
 msgid "Explore our featured collection of tools and services."
 msgstr ""
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:14
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr ""
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:18
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr ""
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:22
 msgid "Load More"
+msgstr ""
+
+#: components/marketplace/index.js:23
+#: components/marketplaceSubnav/Mobilenav.js:15
+#: components/marketplaceSubnav/Sidebar.js:12
+msgid "Categories"
+msgstr ""
+
+#: components/marketplaceBody/Body.js:40
+msgid "All"
 msgstr ""
 
 #: components/productPage/index.js:14

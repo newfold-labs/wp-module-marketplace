@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2025-02-19 15:45",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "components\/marketplace\/index.js",
     "domain": "messages",
     "locale_data": {
@@ -11,7 +11,7 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Marketplace": [
-                "Tienda"
+                "Marketplace"
             ],
             "Explore our featured collection of tools and services.": [
                 "Explora nuestra colecci\u00f3n destacada de herramientas y servicios."
@@ -24,6 +24,9 @@
             ],
             "Load More": [
                 "Cargar m\u00e1s"
+            ],
+            "Categories": [
+                "Categor\u00edas"
             ]
         }
     }

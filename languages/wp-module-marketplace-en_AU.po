@@ -15,7 +15,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: bootstrap.php:15
-#: components/marketplace/index.js:10
+#: includes/Marketplace.php:57
+#: components/marketplace/index.js:9
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -26,22 +27,23 @@ msgstr "Premium"
 
 #. translators: The brand from the plugin is inserted into the string
 #: includes/PluginsMarketplace.php:121
+#, php-format
 msgid "Unlock the full potential of your WordPress website with premium plugins from %s."
 msgstr "Unlock the full potential of your WordPress website with premium plugins from %s."
 
-#: components/marketplace/index.js:11
+#: components/marketplace/index.js:10
 msgid "Explore our featured collection of tools and services."
 msgstr "Explore our featured collection of tools and services."
 
-#: components/marketplace/index.js:15
+#: components/marketplace/index.js:14
 msgid "Oops, there was an error loading the marketplace, please try again later."
 msgstr "Oops, there was an error loading the marketplace. Please try again later."
 
-#: components/marketplace/index.js:19
+#: components/marketplace/index.js:18
 msgid "Sorry, no marketplace items. Please, try again later."
 msgstr "Sorry, no marketplace items. Please try again later."
 
-#: components/marketplace/index.js:23
+#: components/marketplace/index.js:22
 msgid "Load More"
 msgstr "Load more"
 
@@ -52,3 +54,13 @@ msgstr "Oops! Something went wrong"
 #: components/productPage/index.js:18
 msgid "An error occurred while loading the content. Please try again later."
 msgstr "An error occurred while loading the content. Please try again later."
+
+#: components/marketplace/index.js:23
+#: components/marketplaceSubnav/Mobilenav.js:15
+#: components/marketplaceSubnav/Sidebar.js:12
+msgid "Categories"
+msgstr "Categories"
+
+#: components/marketplaceBody/Body.js:40
+msgid "All"
+msgstr ""

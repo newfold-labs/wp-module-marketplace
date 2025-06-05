@@ -6,7 +6,7 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 
 	beforeEach( () => {
 
-		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace' );
+		cy.exec( 'npx wp-env run cli wp transient delete newfold_marketplace', {failOnNonZeroExit: false} );
 
 		cy.intercept(
 			{
@@ -19,13 +19,13 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 		cy.login( Cypress.env( "wpUsername" ), Cypress.env( "wpPassword" ) );
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/featured'
 		);
 	} );
 
 	it( 'Exists', () => {
-		cy.contains( 'h2', 'Marketplace' );
+		cy.contains( 'h1', 'Marketplace' );
 	} );
 
 	it( 'Is Accessible', () => {
@@ -120,18 +120,18 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 			.and(
 				'include',
 				'page=' +
-					Cypress.env( 'pluginId' ) +
-					'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858'
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858'
 			);
 	} );
 
 	it( 'Category Tab Filters properly', () => {
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace/services'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/featured'
 		);
-		cy.get( '.marketplace-item' ).should( 'have.length', 12 );
+		cy.get( '.marketplace-item' ).should( 'have.length', 5 );
 		cy.get( '#marketplace-item-1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2 h3' )
 			.scrollIntoView()
 			.should( 'be.visible' )
@@ -139,8 +139,8 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace/seo'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/seo'
 		);
 		cy.get( '.marketplace-item' ).should( 'have.length', 6 );
 		cy.get( '#marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 h3' )
@@ -152,8 +152,8 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	it( 'Load more button loads more products', () => {
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace/services'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/services'
 		);
 		cy.wait( 300 );
 
@@ -169,8 +169,8 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	it( 'Product CTB cards render correctly', () => {
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace/seo'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/seo'
 		);
 		cy.get(
 			'.marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 a.nfd-button'
@@ -188,8 +188,8 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	it( 'Product with sale price displays properly', () => {
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
-				Cypress.env( 'pluginId' ) +
-				'#/marketplace/ecommerce'
+			Cypress.env( 'pluginId' ) +
+			'#/marketplace/ecommerce'
 		);
 		cy.get(
 			'.marketplace-item-c9201843-d8ae-4032-bd4e-f3fa5a8b8314 .marketplace-item-price'
