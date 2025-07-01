@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1751382238">
-  <project timestamp="1751382238">
+<coverage generated="1751408609">
+  <project timestamp="1751408609">
     <file name="/home/runner/work/wp-module-marketplace/wp-module-marketplace/includes/Marketplace.php">
       <class name="NewfoldLabs\WP\Module\Marketplace\Marketplace" namespace="global">
         <metrics complexity="7" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="0" elements="54" coveredelements="0"/>
