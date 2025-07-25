@@ -131,7 +131,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 				primaryCTA = (
 					<Button
 						as="a"
-						href={ item.primaryUrl }
+						href={ window?.NewfoldRuntime?.linkTracker?.addUtmParams( item.primaryUrl ) }
 						target="_blank"
 						data-action="load-nfd-ctb"
 						data-ctb-id={ item.clickToBuyId }
@@ -144,7 +144,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 				);
 			} else {
 				primaryCTA = (
-					<Button as="a" href={ item.primaryUrl } target="_blank">
+					<Button as="a" href={ window?.NewfoldRuntime?.linkTracker?.addUtmParams( item.primaryUrl ) } target="_blank">
 						{ item.primaryCallToAction }
 					</Button>
 				);
@@ -164,7 +164,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 				as: 'a',
 				className:
 					'nfd-inline-flex nfd-items-center nfd-gap-1.5 nfd-w-max nfd-no-underline',
-				href: generateSecondaryUrl(),
+				href: window?.NewfoldRuntime?.linkTracker?.addUtmParams( generateSecondaryUrl() ),
 				target: isInternal ? '_self' : '_blank',
 				onClick: handleNavigate,
 			};
