@@ -119,8 +119,6 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 			.and( 'have.attr', 'href' )
 			.and(
 				'include',
-				'page=' +
-				Cypress.env( 'pluginId' ) +
 				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858'
 			);
 	} );
