@@ -1,5 +1,5 @@
-import { Container, Title } from '@newfold/ui-component-library';
-import { default as Subnav } from '../marketplaceSubnav/Subnav';
+import { Title } from '@newfold/ui-component-library';
+import { default as Filters } from '../marketplaceFilters';
 import { default as MarketplaceList } from '../marketplaceList/';
 import { default as MarketplaceIsLoading } from '../marketplaceIsLoading/';
 
@@ -173,13 +173,14 @@ export const Body = ( { constants, methods } ) => {
 		return <MarketplaceIsLoading/>;
 	};
 
-	return <div className="nfd-flex nfd-relative nfd-gap-6 nfd-max-w-full nfd-my-0 nfd-flex-row max-[781px]:nfd-flex-col">
-		<Subnav
-			categories={ marketplaceCategories }
-			activeCategoryIndex={ activeCategoryIndex }
-			methods={ methods }
-			constants={ constants }
-		/>
+	return <div className="nfd-flex nfd-relative nfd-gap-6 nfd-max-w-full nfd-my-0 nfd-flex-col max-[781px]:nfd-flex-col">
+		{
+			! isLoading &&
+			<Filters
+				categories={ marketplaceCategories }
+				activeCategoryIndex={ activeCategoryIndex }
+			/>
+		}
 		<div className="newfold-marketplace-wrapper">
 			{ isLoading && renderSkeleton() }
 			{ isError && (
