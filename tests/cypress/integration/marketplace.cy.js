@@ -31,7 +31,7 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	it( 'Is Accessible', () => {
 		cy.injectAxe();
 		cy.wait( 1000 );
-		cy.checkA11y( appClass + '-app-body' );
+		cy.checkA11y( appClass + '-app-marketplace-page' );
 	} );
 
 	it( 'Product grid has 5 items', () => {
