@@ -64,3 +64,7 @@ msgstr "Ocurrió un error al cargar el contenido. Por favor, inténtalo más tar
 #: components/marketplaceBody/Body.js:40
 msgid "All"
 msgstr "Todo"
+
+#: components/marketplaceFilters/Filters.js:19
+msgid "Filter by type"
+msgstr ""
