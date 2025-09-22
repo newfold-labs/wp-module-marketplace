@@ -69,3 +69,7 @@ msgstr "Categorieën"
 #: components/marketplaceBody/Body.js:40
 msgid "All"
 msgstr "Alle"
+
+#: components/marketplaceFilters/Filters.js:19
+msgid "Filter by type"
+msgstr ""

@@ -31,7 +31,7 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 	it( 'Is Accessible', () => {
 		cy.injectAxe();
 		cy.wait( 1000 );
-		cy.checkA11y( appClass + '-app-body' );
+		cy.checkA11y( appClass + '-app-marketplace-page' );
 	} );
 
 	it( 'Product grid has 5 items', () => {
@@ -130,7 +130,7 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 			'#/marketplace/featured'
 		);
 		cy.get( '.marketplace-item' ).should( 'have.length', 5 );
-		cy.get( '#marketplace-item-1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2 h3' )
+		cy.get( '#marketplace-item-1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2 h2' )
 			.scrollIntoView()
 			.should( 'be.visible' )
 			.should( 'have.text', 'Web Design Services' );
@@ -141,7 +141,7 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 			'#/marketplace/seo'
 		);
 		cy.get( '.marketplace-item' ).should( 'have.length', 6 );
-		cy.get( '#marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 h3' )
+		cy.get( '#marketplace-item-a1ff70f1-9670-4e25-a0e1-a068d3e43a45 h2' )
 			.scrollIntoView()
 			.should( 'be.visible' )
 			.should( 'have.text', 'Yoast Premium' );

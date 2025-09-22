@@ -55,6 +55,10 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+#: components/marketplaceFilters/Filters.js:19
+msgid "Filter by type"
+msgstr ""
+
 #: components/productPage/index.js:14
 msgid "Oops! Something Went Wrong"
 msgstr ""

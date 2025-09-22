@@ -251,7 +251,7 @@ const MarketplaceItem = ( { item, methods, constants } ) => {
 				) }
 			</Card.Header>
 			<Card.Content className="nfd-flex nfd-flex-col nfd-gap-3">
-				<Title as="h3" size="4" className="marketplace-item-title">
+				<Title as="h2" size="4" className="marketplace-item-title">
 					{ item.name }
 				</Title>
 				<p>{ item.description }</p>
