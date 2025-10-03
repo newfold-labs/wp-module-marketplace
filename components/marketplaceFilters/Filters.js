@@ -22,7 +22,7 @@ export const Filters = ( { categories, activeCategoryIndex } ) => {
 					onChange={ setCategory }
 					value={ activePath || 'all' }
 					id={ 'nfd-marketing-page-category-selector' }
-					className={ 'nfd-marketing-page-category-selector' }
+					className={ 'nfd-marketing-page-category-selector nfd-min-w-[200px]' }
 					selectedLabel={
 						categories.find(
 							( cat ) => cat.name === (activePath || 'all')
