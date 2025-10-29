@@ -1,6 +1,10 @@
 const { test, expect } = require('@playwright/test');
-const { auth, a11y } = require('../../../../../../tests/playwright/helpers');
-const marketplace = require('../helpers/marketplace');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const { auth, a11y } = require(path.join(pluginDir, 'tests/playwright/helpers'));
+const helpers = require('../helpers'); // Renamed from marketplace
 
 test.describe('Marketplace Page', () => {
   const appClass = '.bluehost'; // Default app class, can be overridden with environment variable
@@ -8,16 +12,16 @@ test.describe('Marketplace Page', () => {
 
   test.beforeEach(async ({ page }) => {
     // Clear marketplace transient
-    await marketplace.clearMarketplaceTransient(page);
+    await helpers.clearMarketplaceTransient(page);
 
     // Setup marketplace API intercepts
-    await marketplace.setupMarketplaceIntercepts(page);
+    await helpers.setupMarketplaceIntercepts(page);
 
     // Login to WordPress
     await auth.loginToWordPress(page);
 
     // Navigate to marketplace featured page
-    await marketplace.navigateToMarketplaceCategory(page, 'featured', pluginId);
+    await helpers.navigateToMarketplaceCategory(page, 'featured', pluginId);
   });
 
   test('Exists', async ({ page }) => {
@@ -26,7 +30,7 @@ test.describe('Marketplace Page', () => {
 
   test('Is Accessible', async ({ page }) => {
     // Wait for marketplace to load
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     // Wait a bit for any animations to complete
     await page.waitForTimeout(1000);
@@ -36,17 +40,17 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Product grid has 5 items', async ({ page }) => {
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productItems = page.locator('.marketplace-item');
     await expect(productItems).toHaveCount(5);
   });
 
   test('First product card renders correctly', async ({ page }) => {
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = '1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2';
-    const productCard = marketplace.getMarketplaceProduct(page, productId);
+    const productCard = helpers.getMarketplaceProduct(page, productId);
     
     // Verify card is visible
     await productCard.scrollIntoViewIfNeeded();
@@ -71,10 +75,10 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Second product card render correctly', async ({ page }) => {
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = '2a1dadb5-f58d-4ae4-a26b-27efb09136eb';
-    const productCard = marketplace.getMarketplaceProduct(page, productId);
+    const productCard = helpers.getMarketplaceProduct(page, productId);
     
     // Verify card is visible
     await productCard.scrollIntoViewIfNeeded();
@@ -99,10 +103,10 @@ test.describe('Marketplace Page', () => {
   });
 
   test('CTA links have target=_blank', async ({ page }) => {
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = '1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2';
-    const productCard = marketplace.getMarketplaceProduct(page, productId);
+    const productCard = helpers.getMarketplaceProduct(page, productId);
     
     const learnMoreLink = productCard.locator('a:has-text("Learn More")');
     await learnMoreLink.scrollIntoViewIfNeeded();
@@ -110,10 +114,10 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Product page Secondary CTA links properly', async ({ page }) => {
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = 'a2ff70f1-9670-4e25-a0e1-a068d3e43d55';
-    const productCard = marketplace.getMarketplaceProduct(page, productId);
+    const productCard = helpers.getMarketplaceProduct(page, productId);
     
     const learnMoreLink = productCard.locator('a:has-text("Learn More")');
     await learnMoreLink.scrollIntoViewIfNeeded();
@@ -124,26 +128,26 @@ test.describe('Marketplace Page', () => {
 
   test('Category Tab Filters properly', async ({ page }) => {
     // Start on featured page
-    await marketplace.navigateToMarketplaceCategory(page, 'featured', pluginId);
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.navigateToMarketplaceCategory(page, 'featured', pluginId);
+    await helpers.waitForMarketplaceProducts(page);
     
     // Verify featured products
     await expect(page.locator('.marketplace-item')).toHaveCount(5);
     
-    const firstProduct = marketplace.getMarketplaceProduct(page, '1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2');
+    const firstProduct = helpers.getMarketplaceProduct(page, '1fc92f8a-bb9f-47c8-9808-aab9c82d6bf2');
     const firstProductTitle = firstProduct.locator('h2');
     await firstProductTitle.scrollIntoViewIfNeeded();
     await expect(firstProductTitle).toBeVisible();
     await expect(firstProductTitle).toHaveText('Web Design Services');
     
     // Navigate to SEO category
-    await marketplace.navigateToMarketplaceCategory(page, 'seo', pluginId);
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.navigateToMarketplaceCategory(page, 'seo', pluginId);
+    await helpers.waitForMarketplaceProducts(page);
     
     // Verify SEO products
     await expect(page.locator('.marketplace-item')).toHaveCount(6);
     
-    const seoProduct = marketplace.getMarketplaceProduct(page, 'a1ff70f1-9670-4e25-a0e1-a068d3e43a45');
+    const seoProduct = helpers.getMarketplaceProduct(page, 'a1ff70f1-9670-4e25-a0e1-a068d3e43a45');
     const seoProductTitle = seoProduct.locator('h2');
     await seoProductTitle.scrollIntoViewIfNeeded();
     await expect(seoProductTitle).toBeVisible();
@@ -152,7 +156,7 @@ test.describe('Marketplace Page', () => {
 
   test('Load more button loads more products', async ({ page }) => {
     // Navigate to services category (has more products)
-    await marketplace.navigateToMarketplaceCategory(page, 'services', pluginId);
+    await helpers.navigateToMarketplaceCategory(page, 'services', pluginId);
     await page.waitForTimeout(300);
     
     // Verify initial products
@@ -171,8 +175,8 @@ test.describe('Marketplace Page', () => {
 
   test('Product CTB cards render correctly', async ({ page }) => {
     // Navigate to SEO category (has CTB products)
-    await marketplace.navigateToMarketplaceCategory(page, 'seo', pluginId);
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.navigateToMarketplaceCategory(page, 'seo', pluginId);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = 'a1ff70f1-9670-4e25-a0e1-a068d3e43a45';
     const ctbButton = page.locator(`.marketplace-item-${productId} a.nfd-button`);
@@ -185,11 +189,11 @@ test.describe('Marketplace Page', () => {
 
   test('Product with sale price displays properly', async ({ page }) => {
     // Navigate to ecommerce category (has sale price products)
-    await marketplace.navigateToMarketplaceCategory(page, 'ecommerce', pluginId);
-    await marketplace.waitForMarketplaceProducts(page);
+    await helpers.navigateToMarketplaceCategory(page, 'ecommerce', pluginId);
+    await helpers.waitForMarketplaceProducts(page);
     
     const productId = 'c9201843-d8ae-4032-bd4e-f3fa5a8b8314';
-    const productCard = marketplace.getMarketplaceProduct(page, productId);
+    const productCard = helpers.getMarketplaceProduct(page, productId);
     
     // Verify sale price
     await expect(productCard.locator('.marketplace-item-price')).toContainText('69');

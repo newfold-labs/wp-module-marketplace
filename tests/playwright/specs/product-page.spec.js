@@ -1,6 +1,10 @@
 const { test, expect } = require('@playwright/test');
-const { auth } = require('../../../../../../tests/playwright/helpers');
-const marketplace = require('../helpers/marketplace');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const { auth } = require(path.join(pluginDir, 'tests/playwright/helpers'));
+const helpers = require('../helpers'); // Renamed from marketplace
 
 test.describe('Product Page', () => {
   const appClass = '.bluehost'; // Default app class, can be overridden with environment variable
@@ -9,13 +13,13 @@ test.describe('Product Page', () => {
 
   test.beforeEach(async ({ page }) => {
     // Setup marketplace API intercepts with delay
-    await marketplace.setupMarketplaceIntercepts(page, { delay: 250 });
+    await helpers.setupMarketplaceIntercepts(page, { delay: 250 });
 
     // Login to WordPress
     await auth.loginToWordPress(page);
 
     // Navigate to product page
-    await marketplace.navigateToMarketplaceProduct(page, productId, pluginId);
+    await helpers.navigateToMarketplaceProduct(page, productId, pluginId);
   });
 
   test('Show loading state while fetching', async ({ page }) => {
@@ -29,7 +33,7 @@ test.describe('Product Page', () => {
     await page.waitForResponse('**/newfold-marketplace/v1/products/page**');
     
     // Wait for loading to complete
-    await marketplace.waitForMarketplaceLoadingComplete(page);
+    await helpers.waitForMarketplaceLoadingComplete(page);
     
     // Verify product page content is visible
     await expect(page.locator('.nfd-product-page-content')).toBeVisible();
@@ -40,7 +44,7 @@ test.describe('Product Page', () => {
     await page.reload();
     
     // Setup error intercept
-    await marketplace.setupMarketplaceErrorIntercepts(page, {
+    await helpers.setupMarketplaceErrorIntercepts(page, {
       status: 404,
       message: 'Error',
       delay: 250

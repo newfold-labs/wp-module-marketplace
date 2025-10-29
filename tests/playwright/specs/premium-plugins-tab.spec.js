@@ -1,17 +1,21 @@
 const { test, expect } = require('@playwright/test');
-const { auth, a11y } = require('../../../../../../tests/playwright/helpers');
-const marketplace = require('../helpers/marketplace');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const { auth, a11y } = require(path.join(pluginDir, 'tests/playwright/helpers'));
+const helpers = require('../helpers'); // Renamed from marketplace
 
 test.describe('Plugins Premium Tab', () => {
   test.beforeEach(async ({ page }) => {
     // Setup marketplace API intercepts with delay
-    await marketplace.setupMarketplaceIntercepts(page, { delay: 1000 });
+    await helpers.setupMarketplaceIntercepts(page, { delay: 1000 });
 
     // Login to WordPress
     await auth.loginToWordPress(page);
 
     // Navigate to premium plugins tab
-    await marketplace.navigateToPremiumPluginsTab(page);
+    await helpers.navigateToPremiumPluginsTab(page);
   });
 
   test('Premium tab exist', async ({ page }) => {
@@ -22,7 +26,7 @@ test.describe('Plugins Premium Tab', () => {
 
   test('Is Accessible', async ({ page }) => {
     // Wait for premium plugins to load
-    await marketplace.waitForPremiumPluginsLoad(page);
+    await helpers.waitForPremiumPluginsLoad(page);
     
     // Wait a bit for any animations to complete
     await page.waitForTimeout(1000);
@@ -36,7 +40,7 @@ test.describe('Plugins Premium Tab', () => {
     await page.waitForResponse('**/newfold-marketplace/v1/marketplace**');
     
     // Wait for products to load
-    await marketplace.waitForPremiumPluginsLoad(page);
+    await helpers.waitForPremiumPluginsLoad(page);
     
     const pluginCards = page.locator('#the-list .plugin-card');
     await expect(pluginCards).toBeVisible();
@@ -47,9 +51,9 @@ test.describe('Plugins Premium Tab', () => {
     await page.waitForResponse('**/newfold-marketplace/v1/marketplace**');
     
     // Wait for products to load
-    await marketplace.waitForPremiumPluginsLoad(page);
+    await helpers.waitForPremiumPluginsLoad(page);
     
-    const firstCard = marketplace.getPremiumPluginCard(page, 0);
+    const firstCard = helpers.getPremiumPluginCard(page, 0);
     
     // Verify thumbnail
     const thumbnail = firstCard.locator('.nfd-plugin-card-thumbnail img');
