@@ -42,7 +42,7 @@ test.describe('Plugins Premium Tab', () => {
     // Wait for products to load
     await helpers.waitForPremiumPluginsLoad(page);
     
-    const pluginCards = page.locator('#the-list .plugin-card');
+    const pluginCards = page.locator('#the-list .plugin-card:first-of-type');
     await expect(pluginCards).toBeVisible();
   });
 

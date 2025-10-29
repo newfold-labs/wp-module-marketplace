@@ -129,7 +129,7 @@ async function setupMarketplaceErrorIntercepts(page, options = {}) {
  * @param {number} timeout - Timeout in milliseconds
  */
 async function waitForMarketplaceProducts(page, timeout = 10000) {
-  await page.waitForSelector('.marketplace-item', { timeout });
+  await page.waitForSelector('.marketplace-item:first-of-type', { timeout });
 }
 
 /**
@@ -207,7 +207,7 @@ async function navigateToPremiumPluginsTab(page) {
  */
 async function waitForPremiumPluginsLoad(page, timeout = 10000) {
   await page.waitForSelector('.nfd-premium-plugins-marketplace', { timeout });
-  await page.waitForSelector('.plugin-card', { timeout });
+  await page.waitForSelector('.plugin-card:first-of-type', { timeout });
 }
 
 /**
