@@ -22,6 +22,6 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@wordpress/env": "^10.32.0"
+    "@wordpress/env": "^10.34.0"
   }
 }
