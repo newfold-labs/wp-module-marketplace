@@ -24,6 +24,7 @@ describe( 'Product Page', { testIsolation: true }, () => {
 	} );
 
 	it( 'Show loading state while fetching', () => {
+		cy.reload();
 		cy.get(
 			appClass +
 				'-app-marketplace-page div[aria-label="Fetching product details"]'
