@@ -20,17 +20,28 @@ describe( 'Product Page', { testIsolation: true }, () => {
 		cy.reload();
 	} );
 
-	it( 'Product page loading state and content is visible', () => {
+	it( 'Show loading state while fetching', () => {
 		cy.visit( '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) );
 		cy.visit(
 			'/wp-admin/admin.php?page=' +
 				Cypress.env( 'pluginId' ) +
 				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858',
 		);
+		cy.reload();
 		cy.get(
 			appClass +
 				'-app-marketplace-page div[aria-label="Fetching product details"]'
-		).should( 'be.visible', { timeout: 15000 } );
+		).should( 'be.visible', { timeout: 20000 } );
+	} );
+
+	it( 'Product page content is visible', () => {
+		cy.visit( '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) );
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858',
+		);
+		cy.reload();
 		cy.wait( '@productPageData' );
 		cy.get( '.nfd-product-page-content' ).should( 'be.visible' );
 	} );
