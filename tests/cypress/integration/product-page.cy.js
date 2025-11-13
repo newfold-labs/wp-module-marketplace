@@ -27,7 +27,12 @@ describe( 'Product Page', { testIsolation: true }, () => {
 				Cypress.env( 'pluginId' ) +
 				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858',
 		);
-		cy.reload();
+		cy.visit( '/wp-admin/' );
+		cy.visit(
+			'/wp-admin/admin.php?page=' +
+				Cypress.env( 'pluginId' ) +
+				'#/marketplace/product/549e5e29-735f-4e09-892e-766ca9b59858',
+		);
 		cy.get(
 			appClass +
 				'-app-marketplace-page div[aria-label="Fetching product details"]'
