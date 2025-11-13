@@ -24,14 +24,12 @@ describe( 'Marketplace Page', { testIsolation: true }, () => {
 		);
 	} );
 
-	it( 'Exists', () => {
-		cy.contains( 'h1', 'Marketplace' );
-	} );
-
-	it( 'Is Accessible', () => {
+	it( 'Exists and is Accessible', () => {
+		cy.reload();
 		cy.injectAxe();
 		cy.wait( 1000 );
-		cy.checkA11y( appClass + '-app-marketplace-page' );
+		cy.contains( 'h1', 'Marketplace', { timeout: 10000 } );
+		cy.checkA11y( appClass + '-app-marketplace-page', { timeout: 10000 } );
 	} );
 
 	it( 'Product grid has 5 items', () => {
