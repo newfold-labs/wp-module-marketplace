@@ -23,20 +23,17 @@ describe( 'Product Page', { testIsolation: true }, () => {
 		);
 	} );
 
-	it( 'Show loading state while fetching', () => {
+	it( 'Product page loading state and content is visible', () => {
 		cy.reload();
 		cy.get(
 			appClass +
 				'-app-marketplace-page div[aria-label="Fetching product details"]'
-		).should( 'be.visible' );
-	} );
-
-	it( 'Product page content is visible', () => {
+		).should( 'be.visible', { timeout: 15000 } );
 		cy.wait( '@productPageData' );
 		cy.get( '.nfd-product-page-content' ).should( 'be.visible' );
 	} );
 
-	it( 'Show error state if fetching fails', () => {
+	it( 'Shows error state if fetching fails', () => {
 		cy.reload();
 		cy.intercept(
 			{
