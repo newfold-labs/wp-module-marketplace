@@ -23,16 +23,6 @@ describe( 'Product Page', { testIsolation: true }, () => {
 		);
 	} );
 
-	it( 'Product page loading state and content is visible', () => {
-		cy.reload();
-		cy.get(
-			appClass +
-				'-app-marketplace-page div[aria-label="Fetching product details"]'
-		).should( 'be.visible', { timeout: 15000 } );
-		cy.wait( '@productPageData' );
-		cy.get( '.nfd-product-page-content' ).should( 'be.visible' );
-	} );
-
 	it( 'Shows error state if fetching fails', () => {
 		cy.reload();
 		cy.intercept(
@@ -56,4 +46,15 @@ describe( 'Product Page', { testIsolation: true }, () => {
 			'An error occurred while loading the content. Please try again later.'
 		).should( 'be.visible' );
 	} );
+
+	it( 'Product page loading state and content is visible', () => {
+		cy.reload();
+		cy.get(
+			appClass +
+				'-app-marketplace-page div[aria-label="Fetching product details"]'
+		).should( 'be.visible', { timeout: 15000 } );
+		cy.wait( '@productPageData' );
+		cy.get( '.nfd-product-page-content' ).should( 'be.visible' );
+	} );
+
 } );
