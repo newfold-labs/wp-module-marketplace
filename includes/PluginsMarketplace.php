@@ -1,6 +1,6 @@
 <?php
 
-namespace NewFoldLabs\WP\Module\Marketplace;
+namespace NewfoldLabs\WP\Module\Marketplace;
 
 use function NewfoldLabs\WP\ModuleLoader\container;
 
