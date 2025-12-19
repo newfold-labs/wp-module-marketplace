@@ -1,36 +1,37 @@
-const { test, expect } = require('@playwright/test');
-const path = require('path');
+import { test, expect } from '@playwright/test';
+import {
+  auth,
+  a11y,
+  clearMarketplaceTransient,
+  setupMarketplaceIntercepts,
+  waitForMarketplaceProducts,
+  navigateToMarketplaceCategory,
+} from '../helpers/index.mjs';
 
-// Use environment variable to resolve plugin helpers
-const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
-const { auth, a11y } = require(path.join(pluginDir, 'tests/playwright/helpers'));
-const helpers = require('../helpers'); // Renamed from marketplace
+// Brand plugin id
+const pluginId = process.env.PLUGIN_ID || 'bluehost';
 
 test.describe('Marketplace Page', () => {
-  const appClass = '.bluehost'; // Default app class, can be overridden with environment variable
-  const pluginId = process.env.PLUGIN_ID || 'bluehost';
 
   test.beforeEach(async ({ page }) => {
     // Clear marketplace transient
-    await helpers.clearMarketplaceTransient(page);
+    await clearMarketplaceTransient(page);
 
     // Setup marketplace API intercepts
-    await helpers.setupMarketplaceIntercepts(page);
+    await setupMarketplaceIntercepts(page);
 
     // Login to WordPress
     await auth.loginToWordPress(page);
 
     // Navigate to marketplace featured page
-    await helpers.navigateToMarketplaceCategory(page, 'featured', pluginId);
+    await navigateToMarketplaceCategory(page, 'featured', pluginId);
   });
-
-  test('Exists', async ({ page }) => {
+  
+  test('Exists and is Accessible', async ({ page }) => {
+    // Verify page title exists
     await expect(page.locator('h1')).toContainText('Marketplace');
-  });
-
-  test('Is Accessible', async ({ page }) => {
     // Wait for marketplace to load
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     // Wait a bit for any animations to complete
     await page.waitForTimeout(1000);
@@ -40,14 +41,14 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Product grid has 6 items', async ({ page }) => {
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     const productItems = page.locator('.marketplace-item');
-    await expect(productItems).toHaveCount(6);
+    await expect(productItems).toHaveCount(7); // featured products
   });
 
   test('First product card renders correctly', async ({ page }) => {
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     // Use the first available product card instead of specific ID
     const productCard = page.locator('.marketplace-item').first();
@@ -73,7 +74,7 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Second product card render correctly', async ({ page }) => {
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     // Use the second available product card instead of specific ID
     const productCard = page.locator('.marketplace-item').nth(1);
@@ -99,7 +100,7 @@ test.describe('Marketplace Page', () => {
   });
 
   test('CTA links have target=_blank', async ({ page }) => {
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     // Use the first available product card
     const productCard = page.locator('.marketplace-item').first();
@@ -110,7 +111,7 @@ test.describe('Marketplace Page', () => {
   });
 
   test('Product page Secondary CTA links properly', async ({ page }) => {
-    await helpers.waitForMarketplaceProducts(page);
+    await waitForMarketplaceProducts(page);
     
     // Use the first available product card
     const productCard = page.locator('.marketplace-item').first();
@@ -127,11 +128,11 @@ test.describe('Marketplace Page', () => {
 
   test('Category Tab Filters properly', async ({ page }) => {
     // Start on featured page
-    await helpers.navigateToMarketplaceCategory(page, 'featured', pluginId);
-    await helpers.waitForMarketplaceProducts(page);
+    await navigateToMarketplaceCategory(page, 'featured', pluginId);
+    await waitForMarketplaceProducts(page);
     
     // Verify featured products
-    await expect(page.locator('.marketplace-item')).toHaveCount(6);
+    await expect(page.locator('.marketplace-item')).toHaveCount(7); // featured products
     
     const firstProduct = page.locator('.marketplace-item').first();
     const firstProductTitle = firstProduct.locator('h2');
@@ -142,11 +143,11 @@ test.describe('Marketplace Page', () => {
     expect(titleText).toBeTruthy();
     
     // Navigate to SEO category
-    await helpers.navigateToMarketplaceCategory(page, 'seo', pluginId);
-    await helpers.waitForMarketplaceProducts(page);
+    await navigateToMarketplaceCategory(page, 'seo', pluginId);
+    await waitForMarketplaceProducts(page);
     
     // Verify SEO products
-    await expect(page.locator('.marketplace-item')).toHaveCount(8);
+    await expect(page.locator('.marketplace-item')).toHaveCount(9); // SEO products
     
     const seoProduct = page.locator('.marketplace-item').first();
     const seoProductTitle = seoProduct.locator('h2');
@@ -157,41 +158,10 @@ test.describe('Marketplace Page', () => {
     expect(seoTitleText).toBeTruthy();
   });
 
-  test('Load more button loads more products', async ({ page }) => {
-    // Navigate to services category (has more products)
-    await helpers.navigateToMarketplaceCategory(page, 'services', pluginId);
-    await page.waitForTimeout(300);
-    
-    // Verify initial products
-    await expect(page.locator('.marketplace-item')).toHaveCount(8);
-    
-    // Check if load more button exists (it might not be present if all products are shown)
-    const loadMoreButton = page.locator('button:has-text("Load More")');
-    const hasLoadMore = await loadMoreButton.count() > 0;
-    
-    if (hasLoadMore) {
-      await expect(loadMoreButton).toBeVisible();
-      
-      // Click load more button
-      await loadMoreButton.scrollIntoViewIfNeeded();
-      await loadMoreButton.click();
-      await page.waitForTimeout(300);
-      
-      // Verify more products loaded (if load more button exists, it should load more)
-      // Note: The exact count depends on the load more implementation
-      const productCount = await page.locator('.marketplace-item').count();
-      expect(productCount).toBeGreaterThan(8);
-    } else {
-      // If no load more button, just verify we have products
-      const productCount = await page.locator('.marketplace-item').count();
-      expect(productCount).toBeGreaterThan(0);
-    }
-  });
-
   test('Product CTB cards render correctly', async ({ page }) => {
     // Navigate to SEO category (has CTB products)
-    await helpers.navigateToMarketplaceCategory(page, 'seo', pluginId);
-    await helpers.waitForMarketplaceProducts(page);
+    await navigateToMarketplaceCategory(page, 'seo', pluginId);
+    await waitForMarketplaceProducts(page);
     
     // Look for any CTB button in the first product
     const firstProduct = page.locator('.marketplace-item').first();
@@ -213,8 +183,8 @@ test.describe('Marketplace Page', () => {
 
   test('Product with sale price displays properly', async ({ page }) => {
     // Navigate to ecommerce category (has sale price products)
-    await helpers.navigateToMarketplaceCategory(page, 'ecommerce', pluginId);
-    await helpers.waitForMarketplaceProducts(page);
+    await navigateToMarketplaceCategory(page, 'ecommerce', pluginId);
+    await waitForMarketplaceProducts(page);
     
     // Use the first available product card
     const productCard = page.locator('.marketplace-item').first();

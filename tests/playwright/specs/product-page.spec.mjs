@@ -1,25 +1,27 @@
-const { test, expect } = require('@playwright/test');
-const path = require('path');
+import { test, expect } from '@playwright/test';
+import {
+  auth,
+  setupMarketplaceIntercepts,
+  navigateToMarketplaceProduct,
+  waitForMarketplaceLoadingComplete,
+  setupMarketplaceErrorIntercepts,
+} from '../helpers/index.mjs';
 
-// Use environment variable to resolve plugin helpers
-const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
-const { auth } = require(path.join(pluginDir, 'tests/playwright/helpers'));
-const helpers = require('../helpers'); // Renamed from marketplace
+const pluginId = process.env.PLUGIN_ID || 'bluehost';
 
 test.describe('Product Page', () => {
   const appClass = '.bluehost'; // Default app class, can be overridden with environment variable
-  const pluginId = process.env.PLUGIN_ID || 'bluehost';
   const productId = '549e5e29-735f-4e09-892e-766ca9b59858';
 
   test.beforeEach(async ({ page }) => {
     // Setup marketplace API intercepts with delay
-    await helpers.setupMarketplaceIntercepts(page, { delay: 250 });
+    await setupMarketplaceIntercepts(page, { delay: 250 });
 
     // Login to WordPress
     await auth.loginToWordPress(page);
 
     // Navigate to product page
-    await helpers.navigateToMarketplaceProduct(page, productId, pluginId);
+    await navigateToMarketplaceProduct(page, productId, pluginId);
   });
 
   test('Show loading state while fetching', async ({ page }) => {
@@ -41,7 +43,7 @@ test.describe('Product Page', () => {
     }
     
     // Wait for loading to complete
-    await helpers.waitForMarketplaceLoadingComplete(page);
+    await waitForMarketplaceLoadingComplete(page);
     
     // Wait a bit for content to load
     await page.waitForTimeout(1000);
@@ -57,7 +59,7 @@ test.describe('Product Page', () => {
     await page.reload();
     
     // Setup error intercept
-    await helpers.setupMarketplaceErrorIntercepts(page, {
+    await setupMarketplaceErrorIntercepts(page, {
       status: 404,
       message: 'Error',
       delay: 250

@@ -1,36 +1,33 @@
 /**
- * Marketplace Module Test Helpers
+ * Marketplace Module Test Helpers for Playwright
  * 
- * Specific utilities for testing the marketplace module functionality.
- * Includes API mocking, test data setup, and marketplace-specific assertions.
+ * Utilities for testing the Deactivation module functionality.
+ * Includes plugin activation/deactivation helpers and survey interactions.
  */
+import { expect } from '@playwright/test';
+import { join, dirname } from 'path';
+import { readFileSync } from 'fs';
+import { fileURLToPath, pathToFileURL } from 'url';
 
-const { expect } = require('@playwright/test');
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+// ES module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-/**
- * WordPress CLI helper for marketplace module
- * 
- * @param {string} cmd - WP-CLI command to execute
- * @param {boolean} failOnNonZeroExit - Whether to fail on non-zero exit code
- * @returns {string} Command output
- */
-function wpCli(cmd, failOnNonZeroExit = true) {
-  try {
-    const result = execSync(`npx wp-env run cli wp ${cmd}`, { 
-      encoding: 'utf-8',
-      stdio: failOnNonZeroExit ? 'pipe' : 'inherit'
-    });
-    return result.trim();
-  } catch (error) {
-    if (failOnNonZeroExit) {
-      throw new Error(`WP-CLI command failed: ${cmd}\n${error.message}`);
-    }
-    return '';
-  }
-}
+// Resolve plugin directory from PLUGIN_DIR env var (set by playwright.config.mjs) or process.cwd()
+const pluginDir = process.env.PLUGIN_DIR || process.cwd();
+
+// Build path to plugin helpers (.mjs extension for ES module compatibility)
+const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.mjs');
+
+// Import plugin helpers using file:// URL
+const helpersUrl = pathToFileURL(finalHelpersPath).href;
+const pluginHelpers = await import(helpersUrl);
+// destructure pluginHelpers
+let { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
+// destructure wpCli from wordpress
+const { wpCli } = wordpress;
+const { fancyLog } = utils;
+
 
 /**
  * Clear marketplace transient data
@@ -39,9 +36,9 @@ function wpCli(cmd, failOnNonZeroExit = true) {
  */
 async function clearMarketplaceTransient(page) {
   try {
-    wpCli('transient delete newfold_marketplace', false);
+    await wpCli('transient delete newfold_marketplace');
   } catch (error) {
-    console.warn('Failed to clear marketplace transient:', error.message);
+    fancyLog('Failed to clear marketplace transient:' + error.message, 55, 'yellow');
   }
 }
 
@@ -66,32 +63,34 @@ async function setupMarketplaceIntercepts(page, options = {}) {
   let productPageFixture = productPageData;
 
   if (!marketplaceFixture) {
-    const fixturePath = path.join(__dirname, '../fixtures/marketplace-products.json');
-    marketplaceFixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
+    marketplaceFixture = JSON.parse(readFileSync(join(__dirname, '../fixtures/marketplace-products.json'), 'utf8'));
   }
 
   if (!productPageFixture) {
-    const fixturePath = path.join(__dirname, '../fixtures/product-page.json');
-    productPageFixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
+    productPageFixture = JSON.parse(readFileSync(join(__dirname, '../fixtures/product-page.json'), 'utf8'));
   }
 
   // Intercept marketplace API calls
   await page.route('**/newfold-marketplace/v1/marketplace**', async (route) => {
+    if (delay > 0) {
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify(marketplaceFixture),
-      delay: delay
     });
   });
 
   // Intercept product page API calls
   await page.route('**/newfold-marketplace/v1/products/page**', async (route) => {
+    if (delay > 0) {
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify(productPageFixture),
-      delay: delay
     });
   });
 }
@@ -113,11 +112,13 @@ async function setupMarketplaceErrorIntercepts(page, options = {}) {
   } = options;
 
   await page.route('**/newfold-marketplace/v1/products/page**', async (route) => {
+    if (delay > 0) {
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
     await route.fulfill({
       status: status,
       contentType: 'text/plain',
       body: message,
-      delay: delay
     });
   });
 }
@@ -318,8 +319,14 @@ async function verifyPremiumPluginCard(page, index = 0) {
   await expect(secondaryAction).toHaveAttribute('href');
 }
 
-module.exports = {
-  wpCli,
+export {
+  // Plugin helpers (re-exported for convenience)
+  auth,
+  wordpress,
+  newfold,
+  a11y,
+  utils,
+  // Marketplace specific helpers
   clearMarketplaceTransient,
   setupMarketplaceIntercepts,
   setupMarketplaceErrorIntercepts,
