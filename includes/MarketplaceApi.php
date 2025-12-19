@@ -1,6 +1,6 @@
 <?php
 
-namespace NewFoldLabs\WP\Module\Marketplace;
+namespace NewfoldLabs\WP\Module\Marketplace;
 
 use function NewfoldLabs\WP\ModuleLoader\container;
 
@@ -43,7 +43,6 @@ class MarketplaceApi {
 				},
 			)
 		);
-
 	}
 
 	/**
@@ -69,7 +68,6 @@ class MarketplaceApi {
 			array_key_exists( 'ttl', $marketplace['meta'] ) ?
 			$marketplace['meta']['ttl'] :
 			DAY_IN_SECONDS;
-
 	}
 
 	/**

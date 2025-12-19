@@ -2,7 +2,7 @@
   "name": "@newfold-labs/wp-module-marketplace",
   "description": "A module for rendering product data and interacting with the Hiive marketplace API.",
   "license": "GPL-2.0-or-later",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "private": true,
   "engines": {
     "node": ">=22.11.0",
@@ -22,6 +22,6 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@wordpress/env": "^10.32.0"
+    "@wordpress/env": "^10.36.0"
   }
 }
