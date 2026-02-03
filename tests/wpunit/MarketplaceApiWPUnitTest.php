@@ -70,7 +70,8 @@ class MarketplaceApiWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 * @return void
 	 */
 	public function test_register_routes_registers_rest_endpoints() {
-		MarketplaceApi::registerRoutes();
+		add_action( 'rest_api_init', array( MarketplaceApi::class, 'registerRoutes' ) );
+		do_action( 'rest_api_init' );
 		$server = rest_get_server();
 		$routes = $server->get_routes();
 		$found  = array_filter(
