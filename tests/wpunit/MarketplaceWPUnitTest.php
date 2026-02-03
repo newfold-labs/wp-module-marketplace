@@ -15,8 +15,8 @@ class MarketplaceWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 * @return void
 	 */
 	public function test_load_script_translation_file_returns_unchanged_for_other_handle() {
-		$marketplace = new Marketplace( $this->getMockContainer() );
-		$file       = '/some/default/path.json';
+		$marketplace  = new Marketplace( $this->getMockContainer() );
+		$file         = '/some/default/path.json';
 		$result     = $marketplace->load_script_translation_file( $file, 'other-handle', 'wp-module-marketplace' );
 		$this->assertSame( $file, $result );
 	}
@@ -31,8 +31,8 @@ class MarketplaceWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		if ( ! defined( 'NFD_MARKETPLACE_DIR' ) ) {
 			define( 'NFD_MARKETPLACE_DIR', $module_root );
 		}
-		$marketplace = new Marketplace( $this->getMockContainer() );
-		$result     = $marketplace->load_script_translation_file( '/default.json', 'newfold-marketplace', 'wp-module-marketplace' );
+		$marketplace  = new Marketplace( $this->getMockContainer() );
+		$result       = $marketplace->load_script_translation_file( '/default.json', 'newfold-marketplace', 'wp-module-marketplace' );
 		$this->assertStringContainsString( 'languages', $result );
 		$this->assertStringContainsString( NFD_MARKETPLACE_DIR, $result );
 	}

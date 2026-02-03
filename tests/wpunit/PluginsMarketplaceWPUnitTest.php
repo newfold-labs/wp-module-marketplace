@@ -17,7 +17,7 @@ class PluginsMarketplaceWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 	public function test_add_premuim_plugins_tab_adds_premium_key() {
 		$tabs   = array(
 			'featured' => 'Featured',
-			'popular'   => 'Popular',
+			'popular'  => 'Popular',
 		);
 		$result = PluginsMarketplace::add_premuim_plugins_tab( $tabs );
 		$this->assertArrayHasKey( 'premium-marketplace', $result );

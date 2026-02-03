@@ -70,18 +70,27 @@ class ThemesWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 * @return void
 	 */
 	public function test_sort_query_themes_results_puts_priority_themes_first() {
-		$theme_a = (object) array( 'slug' => 'theme-a', 'name' => 'Theme A' );
-		$theme_b = (object) array( 'slug' => 'theme-b', 'name' => 'Theme B' );
-		$theme_yith = (object) array( 'slug' => 'yith-wonder', 'name' => 'Yith Wonder' );
-		$res    = (object) array(
+		$theme_a    = (object) array(
+			'slug' => 'theme-a',
+			'name' => 'Theme A',
+		);
+		$theme_b    = (object) array(
+			'slug' => 'theme-b',
+			'name' => 'Theme B',
+		);
+		$theme_yith = (object) array(
+			'slug' => 'yith-wonder',
+			'name' => 'Yith Wonder',
+		);
+		$res        = (object) array(
 			'themes' => array(
-				'theme-a'      => $theme_a,
-				'theme-b'      => $theme_b,
-				'yith-wonder'  => $theme_yith,
+				'theme-a'     => $theme_a,
+				'theme-b'     => $theme_b,
+				'yith-wonder' => $theme_yith,
 			),
 		);
-		$args   = (object) array( 'browse' => 'popular' );
-		$result = Themes::sort_query_themes_results( $res, 'query_themes', $args );
+		$args        = (object) array( 'browse' => 'popular' );
+		$result       = Themes::sort_query_themes_results( $res, 'query_themes', $args );
 		$this->assertSame( 'yith-wonder', $result->themes[0]->slug );
 	}
 }
