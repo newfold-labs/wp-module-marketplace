@@ -70,8 +70,14 @@ async function setupMarketplaceIntercepts(page, options = {}) {
     productPageFixture = JSON.parse(readFileSync(join(__dirname, '../fixtures/product-page.json'), 'utf8'));
   }
 
+  // Match wp-json paths and rest_route=... URLs (%2F instead of / in query strings)
+  const marketplaceListRe =
+    /newfold-marketplace(%2F|\/)v1(%2F|\/)marketplace/i;
+  const marketplaceProductPageRe =
+    /newfold-marketplace(%2F|\/)v1(%2F|\/)products(%2F|\/)page/i;
+
   // Intercept marketplace API calls
-  await page.route('**/newfold-marketplace/v1/marketplace**', async (route) => {
+  await page.route(marketplaceListRe, async (route) => {
     if (delay > 0) {
       await new Promise(resolve => setTimeout(resolve, delay));
     }
@@ -83,7 +89,7 @@ async function setupMarketplaceIntercepts(page, options = {}) {
   });
 
   // Intercept product page API calls
-  await page.route('**/newfold-marketplace/v1/products/page**', async (route) => {
+  await page.route(marketplaceProductPageRe, async (route) => {
     if (delay > 0) {
       await new Promise(resolve => setTimeout(resolve, delay));
     }
@@ -111,7 +117,10 @@ async function setupMarketplaceErrorIntercepts(page, options = {}) {
     delay = 250 
   } = options;
 
-  await page.route('**/newfold-marketplace/v1/products/page**', async (route) => {
+  const productPageRe =
+    /newfold-marketplace(%2F|\/)v1(%2F|\/)products(%2F|\/)page/i;
+
+  await page.route(productPageRe, async (route) => {
     if (delay > 0) {
       await new Promise(resolve => setTimeout(resolve, delay));
     }

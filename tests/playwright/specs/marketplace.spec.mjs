@@ -40,11 +40,11 @@ test.describe('Marketplace Page', () => {
     await a11y.checkA11y(page, '.marketplace-list');
   });
 
-  test('Product grid has 6 items', async ({ page }) => {
+  test('Product grid has 5 featured items', async ({ page }) => {
     await waitForMarketplaceProducts(page);
     
     const productItems = page.locator('.marketplace-item');
-    await expect(productItems).toHaveCount(7); // featured products
+    await expect(productItems).toHaveCount(5); // featured products in marketplace-products.json fixture
   });
 
   test('First product card renders correctly', async ({ page }) => {
@@ -132,7 +132,7 @@ test.describe('Marketplace Page', () => {
     await waitForMarketplaceProducts(page);
     
     // Verify featured products
-    await expect(page.locator('.marketplace-item')).toHaveCount(7); // featured products
+    await expect(page.locator('.marketplace-item')).toHaveCount(5); // fixture: five products carry the Featured tag
     
     const firstProduct = page.locator('.marketplace-item').first();
     const firstProductTitle = firstProduct.locator('h2');
@@ -146,8 +146,8 @@ test.describe('Marketplace Page', () => {
     await navigateToMarketplaceCategory(page, 'seo', pluginId);
     await waitForMarketplaceProducts(page);
     
-    // Verify SEO products
-    await expect(page.locator('.marketplace-item')).toHaveCount(9); // SEO products
+    // Verify SEO products (fixture has 6 products tagged SEO; wait for full grid)
+    await expect(page.locator('.marketplace-item')).toHaveCount(6, { timeout: 15000 });
     
     const seoProduct = page.locator('.marketplace-item').first();
     const seoProductTitle = seoProduct.locator('h2');
