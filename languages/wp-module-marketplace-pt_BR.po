@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
-"PO-Revision-Date: 2025-05-07 12:04+0100\n"
+"PO-Revision-Date: 2026-04-20T22:26:59+00:00\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: wp-module-marketplace\n"
@@ -53,14 +53,6 @@ msgstr "Carregar mais"
 msgid "Categories"
 msgstr "Categorias"
 
-#: components/productPage/index.js:14
-msgid "Oops! Something Went Wrong"
-msgstr "Ops! Algo deu errado"
-
-#: components/productPage/index.js:18
-msgid "An error occurred while loading the content. Please try again later."
-msgstr "Ocorreu um erro ao carregar o conteúdo. Por favor, tente novamente mais tarde."
-
 #: components/marketplaceBody/Body.js:40
 msgid "All"
 msgstr "Todo"
@@ -68,3 +60,11 @@ msgstr "Todo"
 #: components/marketplaceFilters/Filters.js:19
 msgid "Filter by type"
 msgstr "Filtrar por tipo"
+
+#: components/productPage/index.js:14
+msgid "Oops! Something Went Wrong"
+msgstr "Ops! Algo deu errado"
+
+#: components/productPage/index.js:18
+msgid "An error occurred while loading the content. Please try again later."
+msgstr "Ocorreu um erro ao carregar o conteúdo. Por favor, tente novamente mais tarde."

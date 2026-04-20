@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-13T10:14:35+00:00\n"
-"PO-Revision-Date: 2025-02-13 19:22+0530\n"
+"PO-Revision-Date: 2026-04-20T22:26:59+00:00\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: wp-module-marketplace\n"
@@ -47,14 +47,6 @@ msgstr "Sorry, no marketplace items. Please try again later."
 msgid "Load More"
 msgstr "Load more"
 
-#: components/productPage/index.js:14
-msgid "Oops! Something Went Wrong"
-msgstr "Oops! Something went wrong"
-
-#: components/productPage/index.js:18
-msgid "An error occurred while loading the content. Please try again later."
-msgstr "An error occurred while loading the content. Please try again later."
-
 #: components/marketplace/index.js:23
 #: components/marketplaceSubnav/Mobilenav.js:15
 #: components/marketplaceSubnav/Sidebar.js:12
@@ -68,3 +60,11 @@ msgstr "All"
 #: components/marketplaceFilters/Filters.js:19
 msgid "Filter by type"
 msgstr "Filter by type"
+
+#: components/productPage/index.js:14
+msgid "Oops! Something Went Wrong"
+msgstr "Oops! Something went wrong"
+
+#: components/productPage/index.js:18
+msgid "An error occurred while loading the content. Please try again later."
+msgstr "An error occurred while loading the content. Please try again later."
