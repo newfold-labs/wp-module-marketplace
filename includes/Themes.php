@@ -166,10 +166,11 @@ class Themes {
 	 */
 	public static function query_block_themes_args( $args, $action ) {
 
-		if ( 'query_themes' === $action && 'popular' === $args->browse ) {
-			if ( isset( $args->page ) ) {
-				$page = $args->page;
-			}
+		if ( 'query_themes' === $action &&
+			isset( $args->browse ) &&
+			'popular' === $args->browse
+		) {
+			$page = isset( $args->page ) ? (int) $args->page : 1;
 
 			$args = (object) array(
 				'tag'      => 'full-site-editing',
@@ -195,7 +196,10 @@ class Themes {
 	 */
 	public static function sort_query_themes_results( $res, $action, $args ) {
 
-		if ( 'query_themes' === $action && 'popular' === $args->browse ) {
+		if ( 'query_themes' === $action &&
+			isset( $args->browse ) &&
+			'popular' === $args->browse
+		) {
 
 			$themes_to_show_first = array();
 
