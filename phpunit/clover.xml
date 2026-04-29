@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1776728991">
-  <project timestamp="1776728991">
+<coverage generated="1777482456">
+  <project timestamp="1777482456">
     <file name="/home/runner/work/wp-module-marketplace/wp-module-marketplace/includes/Marketplace.php">
       <class name="NewfoldLabs\WP\Module\Marketplace\Marketplace" namespace="global">
         <metrics complexity="7" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="21" elements="54" coveredelements="22"/>
@@ -278,7 +278,7 @@
     </file>
     <file name="/home/runner/work/wp-module-marketplace/wp-module-marketplace/includes/Themes.php">
       <class name="NewfoldLabs\WP\Module\Marketplace\Themes" namespace="global">
-        <metrics complexity="18" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="78" coveredstatements="19" elements="87" coveredelements="21"/>
+        <metrics complexity="20" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="81" coveredstatements="22" elements="90" coveredelements="24"/>
       </class>
       <line num="27" type="method" name="init" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="28" type="stmt" count="0"/>
@@ -339,36 +339,39 @@
       <line num="146" type="stmt" count="0"/>
       <line num="147" type="stmt" count="0"/>
       <line num="149" type="stmt" count="0"/>
-      <line num="167" type="method" name="query_block_themes_args" visibility="public" complexity="4" crap="4" count="3"/>
+      <line num="167" type="method" name="query_block_themes_args" visibility="public" complexity="5" crap="5" count="3"/>
       <line num="169" type="stmt" count="3"/>
-      <line num="170" type="stmt" count="1"/>
-      <line num="171" type="stmt" count="1"/>
-      <line num="174" type="stmt" count="1"/>
+      <line num="170" type="stmt" count="3"/>
+      <line num="171" type="stmt" count="3"/>
+      <line num="173" type="stmt" count="1"/>
       <line num="175" type="stmt" count="1"/>
       <line num="176" type="stmt" count="1"/>
       <line num="177" type="stmt" count="1"/>
       <line num="178" type="stmt" count="1"/>
       <line num="179" type="stmt" count="1"/>
-      <line num="182" type="stmt" count="3"/>
-      <line num="196" type="method" name="sort_query_themes_results" visibility="public" complexity="5" crap="5" count="1"/>
-      <line num="198" type="stmt" count="1"/>
+      <line num="180" type="stmt" count="1"/>
+      <line num="183" type="stmt" count="3"/>
+      <line num="197" type="method" name="sort_query_themes_results" visibility="public" complexity="6" crap="6" count="1"/>
+      <line num="199" type="stmt" count="1"/>
       <line num="200" type="stmt" count="1"/>
-      <line num="202" type="stmt" count="1"/>
-      <line num="203" type="stmt" count="1"/>
+      <line num="201" type="stmt" count="1"/>
       <line num="204" type="stmt" count="1"/>
       <line num="206" type="stmt" count="1"/>
+      <line num="207" type="stmt" count="1"/>
+      <line num="208" type="stmt" count="1"/>
       <line num="210" type="stmt" count="1"/>
-      <line num="211" type="stmt" count="1"/>
       <line num="214" type="stmt" count="1"/>
-      <line num="220" type="method" name="recommended_theme_ribbon" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="225" type="stmt" count="0"/>
+      <line num="215" type="stmt" count="1"/>
+      <line num="218" type="stmt" count="1"/>
+      <line num="224" type="method" name="recommended_theme_ribbon" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="229" type="stmt" count="0"/>
-      <line num="238" type="stmt" count="0"/>
-      <line num="239" type="stmt" count="0"/>
-      <line num="240" type="stmt" count="0"/>
-      <line num="254" type="stmt" count="0"/>
-      <metrics loc="272" ncloc="216" classes="1" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="78" coveredstatements="19" elements="87" coveredelements="21"/>
+      <line num="233" type="stmt" count="0"/>
+      <line num="242" type="stmt" count="0"/>
+      <line num="243" type="stmt" count="0"/>
+      <line num="244" type="stmt" count="0"/>
+      <line num="258" type="stmt" count="0"/>
+      <metrics loc="276" ncloc="220" classes="1" methods="9" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="81" coveredstatements="22" elements="90" coveredelements="24"/>
     </file>
-    <metrics files="4" loc="778" ncloc="597" classes="4" methods="26" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="318" coveredstatements="67" elements="344" coveredelements="73"/>
+    <metrics files="4" loc="782" ncloc="601" classes="4" methods="26" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="321" coveredstatements="70" elements="347" coveredelements="76"/>
   </project>
 </coverage>
