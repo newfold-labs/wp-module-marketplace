@@ -126,7 +126,8 @@ export const Body = ( { constants, methods } ) => {
 	 * (`items`). Those two numbers can diverge when the feed does not contain every
 	 * product the catalog has for a category, leaving the dropdown count higher than
 	 * the number of items actually displayed. Recompute each count from the feed
-	 * using the same matching logic as `filterProducts` so the dropdown count always
+	 * using the same predicate `MarketplaceList` uses to render the cards
+	 * (`item.categories.includes( category.title )`) so the dropdown count always
 	 * matches the rendered items.
 	 *
 	 * @param Array      categories
@@ -142,10 +143,7 @@ export const Body = ( { constants, methods } ) => {
 		const thecategories = [];
 		categories.forEach( ( cat ) => {
 			cat.products_count = items.filter( ( product ) =>
-				product.categories.some(
-					( element ) =>
-						element.toLowerCase() === cat.name.toLowerCase()
-				)
+				product.categories.includes( cat.title )
 			).length;
 			cat.currentCount = constants.perPage;
 			cat.className = 'newfold-marketplace-category-' + cat.name;
