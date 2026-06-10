@@ -41,7 +41,7 @@ export const Body = ( { constants, methods } ) => {
 								name: 'all',
 								products_count: items.length,
 							},
-							...validateCategories( response.categories.data )
+							...validateCategories( response.categories.data, items )
 						]
 					);
 				}
@@ -120,17 +120,31 @@ export const Body = ( { constants, methods } ) => {
 
 	/**
 	 * Validate provided category data
+	 *
+	 * The category endpoint reports a server-side `products_count` for the whole
+	 * catalog, but the cards are rendered by filtering the returned products feed
+	 * (`items`). Those two numbers can diverge when the feed does not contain every
+	 * product the catalog has for a category, leaving the dropdown count higher than
+	 * the number of items actually displayed. Recompute each count from the feed
+	 * using the same predicate `MarketplaceList` uses to render the cards
+	 * (`item.categories.includes( category.title )`) so the dropdown count always
+	 * matches the rendered items.
+	 *
 	 * @param Array      categories
+	 * @param Array      items      products returned by the marketplace feed
 	 * @param categories
 	 * @return
 	 */
-	const validateCategories = ( categories ) => {
+	const validateCategories = ( categories, items ) => {
 		if ( ! categories.length ) {
 			return [];
 		}
 
 		const thecategories = [];
 		categories.forEach( ( cat ) => {
+			cat.products_count = items.filter( ( product ) =>
+				product.categories.includes( cat.title )
+			).length;
 			cat.currentCount = constants.perPage;
 			cat.className = 'newfold-marketplace-category-' + cat.name;
 
