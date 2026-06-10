@@ -5,7 +5,7 @@ return [
 	'language' => 'es_MX',
 	'project-id-version' => '',
 	'pot-creation-date' => '2025-02-13T09:55:55+00:00',
-	'po-revision-date' => '2026-04-29T17:07:05+00:00',
+	'po-revision-date' => '2026-06-10T07:32:13+00:00',
 	'x-generator' => 'WP-CLI 2.11.0',
 	'messages' => [
 		'Marketplace' => 'Mercado',
