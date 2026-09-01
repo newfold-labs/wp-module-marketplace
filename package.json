@@ -19,7 +19,7 @@
     "@heroicons/react": "^2.2.0",
     "@newfold/ui-component-library": "^2.1.1",
     "@newfold/wp-module-runtime": "^1.2.3",
-    "uuid": "^14.0.1"
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@wordpress/env": "^11.13.0"
