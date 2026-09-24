@@ -5,7 +5,7 @@ import {
   navigateToMarketplaceProduct,
   waitForMarketplaceLoadingComplete,
   setupMarketplaceErrorIntercepts,
-} from '../helpers/index.mjs';
+} from '../helpers/index.js';
 
 const pluginId = process.env.PLUGIN_ID || 'bluehost';
 
