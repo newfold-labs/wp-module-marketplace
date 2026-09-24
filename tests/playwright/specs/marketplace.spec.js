@@ -6,7 +6,7 @@ import {
   setupMarketplaceIntercepts,
   waitForMarketplaceProducts,
   navigateToMarketplaceCategory,
-} from '../helpers/index.mjs';
+} from '../helpers/index.js';
 
 // Brand plugin id
 const pluginId = process.env.PLUGIN_ID || 'bluehost';
