@@ -6,7 +6,7 @@ import {
   navigateToPremiumPluginsTab,
   waitForPremiumPluginsLoad,
   getPremiumPluginCard,
-} from '../helpers/index.mjs';
+} from '../helpers/index.js';
 
 test.describe('Plugins Premium Tab', () => {
   test.beforeEach(async ({ page }) => {
